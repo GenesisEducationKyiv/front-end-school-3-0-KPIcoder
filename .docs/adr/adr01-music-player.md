@@ -2,6 +2,14 @@
 
 **Date:** 2025-05-29
 
+---
+
+## Status
+
+**Proposed**.
+
+---
+
 Nowadays typical music apps set high expectations, Therefore, our app must support playlists, gapless playback, fades, and global volume control. HTML5 audio behaves inconsistently across browsers and mobile devices—autoplay locks, event quirks and codec fallbacks all require custom workarounds. Our current use of native <audio> element isn't even a touch close to the expected player, meaning we should implement a real-world player from scratch. Using external tools is highly preferrable. Any chosen library must be lightweight (ideally under 20 KB gzipped) and allow lazy loading.
 
 ---
@@ -45,12 +53,6 @@ We will adopt **Howler.js** as our core audio engine, accessed via a small abstr
 4. **Consistency**
 
    - Abstracts away dozens of browser and mobile edge cases, giving us one stable API surface instead of patching individual quirks.
-
----
-
-## Status
-
-**Proposed**.
 
 ---
 
