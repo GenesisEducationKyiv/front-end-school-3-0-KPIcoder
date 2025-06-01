@@ -2,7 +2,7 @@
 
 **Date:** 2025-05-29
 
-Nowadays typical music apps set high expectations, Therefore, our app must support playlists, gapless playback, fades, and global volume control. HTML5 audio behaves inconsistently across browsers and mobile devices—autoplay locks, event quirks and codec fallbacks all require custom workarounds. Our current use of native <audio> element isn't even a touch close to the expected player, meaning we should implement a real-world player from scratch. Using external tools is highly preferrable. Any chosen library must be lightweight (ideally under 20 KB gzipped) and allow lazy loading.
+Nowadays typical music apps set high expectations, therefore, our app must support playlists, gapless playback, fades, and global volume control. HTML5 audio behaves inconsistently across browsers and mobile devices—autoplay locks, event quirks and codec fallbacks all require custom workarounds. Our current use of native <audio> element isn't even a touch close to the expected player, meaning we should implement a real-world player from scratch. Using external tools is highly preferrable. Any chosen library must be lightweight (ideally under 20 KB gzipped) and allow lazy loading.
 
 ---
 
