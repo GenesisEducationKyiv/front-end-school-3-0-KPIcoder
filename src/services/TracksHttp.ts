@@ -2,8 +2,8 @@ import {TracksContract} from "@/interfaces/TracksContract.ts";
 import {config} from "@/config.ts";
 import { TrackDto } from "@/interfaces/dto/TrackDto";
 import { TracksFilterOptions } from "@/interfaces/TracksFilterOptions";
-import { tracksWithMetadataSchema } from "@/schemas/track/api-response/tracksWithMetadata";
-import { trackSchema } from "@/schemas/track/api-response/track";
+import { tracksWithMetadataSchema } from "@/schemas/track/tracksWithMetadata";
+import { trackSchema } from "@/schemas/track/track";
 
 export class TracksHttp implements TracksContract {
 
