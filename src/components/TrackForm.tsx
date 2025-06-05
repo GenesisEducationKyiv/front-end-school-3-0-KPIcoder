@@ -20,7 +20,7 @@ const TrackForm = ({ defaultValues = {}, btnText, onSubmit }: TrackFormProps) =>
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5" data-testid="track-form">
+            <form onSubmit={void form.handleSubmit(onSubmit)} className="space-y-5" data-testid="track-form">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                         <FormField
