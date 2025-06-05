@@ -1,9 +1,9 @@
 import {TracksContract} from "@/interfaces/TracksContract.ts";
 import {config} from "@/config.ts";
-import {Track} from "@/interfaces/Track.ts";
-import { WithMetaData } from "@/interfaces/withMetaData.ts";
 import { TrackDto } from "@/interfaces/dto/TrackDto";
 import { TracksFilterOptions } from "@/interfaces/TracksFilterOptions";
+import { tracksWithMetadataSchema } from "@/schemas/track/api-response/tracksWithMetadata";
+import { trackSchema } from "@/schemas/track/api-response/track";
 
 export class TracksHttp implements TracksContract {
 
@@ -18,11 +18,19 @@ export class TracksHttp implements TracksContract {
         if (filterOptions.artist) queryParams.set('artist', filterOptions.artist);
         
         const response = await fetch(`${config.apiBaseUrl}/tracks?${queryParams.toString()}`)
-        return await response.json() as Promise<WithMetaData<Track[], {total: number, limit: number}>>;
+        const tracksWithMetadata: unknown = await response.json()
+
+        const { data, error } = await tracksWithMetadataSchema.spa(tracksWithMetadata)
+
+        if (error || !data) {
+            // TODO: handle error
+            console.error(error);
+        }
+
+        return data!;
     }
 
     async addTrack(track: TrackDto) {
-        console.log(track);
         const response = await fetch(`${config.apiBaseUrl}/tracks`, {
             method: 'POST',
             headers: {
@@ -30,7 +38,15 @@ export class TracksHttp implements TracksContract {
             },
             body: JSON.stringify(track),
         })
-        return await response.json() as Promise<Track>;
+
+        const trackResponse: unknown = await response.json()
+        const { data, error } = await trackSchema.spa(trackResponse)
+
+        if (error || !data) {
+            // TODO: handle error
+            console.error(error);
+        }
+        return data!;
     }
 
     async updateTrack(id: string, track: TrackDto) {
@@ -41,7 +57,16 @@ export class TracksHttp implements TracksContract {
             },
             body: JSON.stringify(track),
         })
-        return await response.json() as Promise<Track>;
+
+        const trackResponse: unknown = await response.json()
+        const { data, error } = await trackSchema.spa(trackResponse)
+
+        if (error || !data) {
+            // TODO: handle error
+            console.error(error);
+        }
+
+        return data!;
     }
 
     async deleteTrack(id: string) {
