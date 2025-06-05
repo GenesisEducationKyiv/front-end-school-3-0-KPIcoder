@@ -1,15 +1,14 @@
 import {getRouteApi, useNavigate} from "@tanstack/react-router";
 import {ChevronLeft, ChevronRight} from "lucide-react";
-
 import {useTracksQuery} from "@/hooks/useTracksApi.ts";
 import TrackList from "@/components/TrackList";
 import AddTrackForm from "@/components/AddTrackForm";
 import TrackFilters from "@/components/TrackFilters";
 import {Button} from "@/components/ui/button";
 import {TracksFilterOptions} from "@/interfaces/TracksFilterOptions";
-import { LoadingSpinner } from "../ui/spinner";
+import {LoadingSpinner} from "../ui/spinner";
 
-const routeApi = getRouteApi('/tracks');
+const routeApi = getRouteApi('/tracks')
 
 const TracksWidget = () => {
     const navigate = useNavigate();
@@ -44,9 +43,9 @@ const TracksWidget = () => {
 
     const handlePreviousPage = () => {
         if (page > 1) {
-            navigate({
+            void navigate({
                 to: '/tracks',
-                search: (prev: TracksFilterOptions) => ({
+                search: (prev) => ({
                     ...prev,
                     page: (page - 1)
                 }),
@@ -57,9 +56,9 @@ const TracksWidget = () => {
 
     const handleNextPage = () => {
         if (page < totalPages) {
-            navigate({
+            void navigate({
                 to: '/tracks',
-                search: (prev: TracksFilterOptions) => ({
+                search: (prev) => ({
                     ...prev,
                     page: (page + 1)
                 }),
@@ -81,10 +80,10 @@ const TracksWidget = () => {
             </div>
 
             {isLoading ? (
-                <LoadingSpinner message="Loading tracks..." data-testid="loading-tracks" />
+                <LoadingSpinner message="Loading tracks..." data-testid="loading-tracks"/>
             ) : error ? (
                 <div className="bg-destructive/10 border border-destructive text-destructive p-4 rounded-md">
-                    Error: {error.message }
+                    Error: {error.message}
                 </div>
             ) : (
                 <>

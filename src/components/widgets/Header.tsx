@@ -3,7 +3,6 @@ import { Search, Menu, User, Heart, PlayCircle, Headphones, Settings, LogOut } f
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Input } from "../ui/input";
-import { Separator } from "../ui/separator";
 import {
   DropdownMenu,
   DropdownMenuContent,

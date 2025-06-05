@@ -5,10 +5,9 @@ const GENRES_QUERY_KEY = 'genres';
 
 export const useGenresQuery = () => useQuery({
     queryKey: [GENRES_QUERY_KEY],
-    queryFn: genresHttp.getGenres,
+    queryFn: genresHttp.getGenres.bind(genresHttp),
     // cache for ten minutes
     gcTime: 10 * 60 * 1000,
 });
 
-// For backward compatibility
 export const useGenresApi = useGenresQuery;
