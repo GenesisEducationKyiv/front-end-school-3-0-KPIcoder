@@ -34,9 +34,8 @@ export default function TrackFilters() {
     artist = "", 
     sort, 
     order,
-    page,
     limit
-  } = useSearch({ from: "/tracks" });
+  } = useSearch({ from: "/tracks", strict: true });
 
   const [searchInput, setSearchInput] = useState(search);
   const [selectedGenre, setSelectedGenre] = useState(genre || ALL_GENRES);
@@ -58,7 +57,7 @@ export default function TrackFilters() {
   };
 
   useEffect(() => {
-    navigate({
+    void navigate({
       to: '/tracks',
       search: {
         search: debouncedSearch || undefined,
@@ -89,7 +88,7 @@ export default function TrackFilters() {
     setSelectedOrder("asc");
     setEntriesPerPage(10);
     
-    navigate({
+    void navigate({
       to: '/tracks',
       search: {
         page: 1,

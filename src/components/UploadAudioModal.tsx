@@ -41,7 +41,7 @@ export default function UploadAudioModal({ open, setOpen, trackId }: UploadAudio
         URL.revokeObjectURL(audioUrl);
       }
     };
-  }, [file]);
+  }, [file, audioUrl]);
 
   const handleUpload = () => {
     if (file) {
