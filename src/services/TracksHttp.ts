@@ -1,26 +1,38 @@
 import {TracksContract} from "@/interfaces/TracksContract.ts";
 import {config} from "@/config.ts";
-import { TrackDto } from "@/interfaces/dto/TrackDto";
-import { TracksFilterOptions } from "@/interfaces/TracksFilterOptions";
-import { tracksWithMetadataSchema } from "@/schemas/track/tracksWithMetadata";
-import { trackSchema } from "@/schemas/track/track";
+import {TrackDto} from "@/interfaces/dto/TrackDto";
+import {TracksFilterOptions} from "@/interfaces/TracksFilterOptions";
+import {tracksWithMetadataSchema} from "@/schemas/track/tracksWithMetadata";
+import {trackSchema} from "@/schemas/track/track";
+import {Maybe} from "@/lib/monads/Maybe.ts";
+
+type MaybeTrackFiltersRecord = Record<keyof TracksFilterOptions, Maybe<TracksFilterOptions[keyof TracksFilterOptions]>>
 
 export class TracksHttp implements TracksContract {
 
     async getTracks(filterOptions: TracksFilterOptions) {
         const queryParams = new URLSearchParams();
-        if (filterOptions.page) queryParams.set('page', filterOptions.page.toString());
-        if (filterOptions.limit) queryParams.set('limit', filterOptions.limit.toString());
-        if (filterOptions.sort) queryParams.set('sort', filterOptions.sort);
-        if (filterOptions.order) queryParams.set('order', filterOptions.order);
-        if (filterOptions.search) queryParams.set('search', filterOptions.search);
-        if (filterOptions.genre) queryParams.set('genre', filterOptions.genre);
-        if (filterOptions.artist) queryParams.set('artist', filterOptions.artist);
-        
+
+        const keys = Object.keys(filterOptions) as (keyof TracksFilterOptions)[];
+
+        const params =
+            keys.reduce((acc: MaybeTrackFiltersRecord, cur) => {
+                    acc[cur] = new Maybe(filterOptions[cur]);
+                    return acc;
+                }, Object.create(null) as MaybeTrackFiltersRecord);
+
+        keys.forEach((key) => {
+            const maybeParam = params[key];
+            maybeParam.unwrap(
+                (param) => queryParams.set(key, param.toString()),
+                () => undefined
+            )
+        })
+
         const response = await fetch(`${config.apiBaseUrl}/tracks?${queryParams.toString()}`)
         const tracksWithMetadata: unknown = await response.json()
 
-        const { data, error } = await tracksWithMetadataSchema.spa(tracksWithMetadata)
+        const {data, error} = await tracksWithMetadataSchema.spa(tracksWithMetadata)
 
         if (error || !data) {
             // TODO: handle error
@@ -40,7 +52,7 @@ export class TracksHttp implements TracksContract {
         })
 
         const trackResponse: unknown = await response.json()
-        const { data, error } = await trackSchema.spa(trackResponse)
+        const {data, error} = await trackSchema.spa(trackResponse)
 
         if (error || !data) {
             // TODO: handle error
@@ -59,7 +71,7 @@ export class TracksHttp implements TracksContract {
         })
 
         const trackResponse: unknown = await response.json()
-        const { data, error } = await trackSchema.spa(trackResponse)
+        const {data, error} = await trackSchema.spa(trackResponse)
 
         if (error || !data) {
             // TODO: handle error
@@ -82,7 +94,7 @@ export class TracksHttp implements TracksContract {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ ids }),
+            body: JSON.stringify({ids}),
         })
         return await response.json() as Promise<void>;
     }
@@ -101,11 +113,11 @@ export class TracksHttp implements TracksContract {
     async deleteTrackFile(id: string) {
         const response = await fetch(`${config.apiBaseUrl}/tracks/${id}/file`, {
             method: 'DELETE',
-        })  
+        })
         return await response.json() as Promise<void>;
     }
-    
-    
+
+
 }
 
 export const tracksHttp = new TracksHttp();
