@@ -209,7 +209,7 @@ export default function TrackFilters() {
                     <Label htmlFor="sort">Sort By</Label>
                     <Select 
                       value={selectedSort} 
-                      onValueChange={setSelectedSort}
+                      onValueChange={(v: 'asc' | 'desc') => setSelectedOrder(v)}
                     >
                       <SelectTrigger id="sort" data-testid="sort-select">
                         <SelectValue />
@@ -227,7 +227,7 @@ export default function TrackFilters() {
                     <Label htmlFor="order">Order</Label>
                     <Select 
                       value={selectedOrder} 
-                      onValueChange={setSelectedOrder}
+                      onValueChange={(v: 'asc' | 'desc') => setSelectedOrder(v)}
                     >
                       <SelectTrigger id="order">
                         <SelectValue />
