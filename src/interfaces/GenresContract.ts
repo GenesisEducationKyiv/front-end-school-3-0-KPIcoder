@@ -1,3 +1,5 @@
+import {Result} from "@/lib/monads/Result.ts";
+
 export interface GenresContract {
-    getGenres(): Promise<string[]>;
+    getGenres(): Promise<Result<string[], Error>>;
 }
