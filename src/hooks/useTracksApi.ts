@@ -16,7 +16,11 @@ export const useAddTrackMutation = () => {
     return useMutation({
         mutationFn: (trackData: TrackDto) => tracksHttp.addTrack(trackData),
         onSuccess: () =>
-            queryClient.invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
+            queryClient
+                .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
+                .catch((err) => err instanceof Error
+                    ? console.error(err)
+                    : console.error(new Error(`Unknown error during query ${TRACKS_QUERY_KEY} invalidation`)))
     });
 };
 
@@ -27,7 +31,11 @@ export const useUpdateTrackMutation = () => {
         mutationFn: ({id, trackData}: { id: string, trackData: TrackDto }) =>
             tracksHttp.updateTrack(id, trackData),
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: [TRACKS_QUERY_KEY]});
+            queryClient
+                .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
+                .catch((err) => err instanceof Error
+                    ? console.error(err)
+                    : console.error(new Error(`Unknown error during query ${TRACKS_QUERY_KEY} invalidation`)));
         },
 
     });
@@ -39,7 +47,11 @@ export const useDeleteTrackMutation = () => {
     return useMutation({
         mutationFn: (id: string) => tracksHttp.deleteTrack(id),
         onSettled: () => {
-            queryClient.invalidateQueries({queryKey: [TRACKS_QUERY_KEY]});
+            queryClient
+                .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
+                .catch((err) => err instanceof Error
+                    ? console.error(err)
+                    : console.error(new Error(`Unknown error during query ${TRACKS_QUERY_KEY} invalidation`)));
         }
     });
 };
@@ -71,7 +83,11 @@ export const useDeleteTrackFileMutation = () => {
     return useMutation({
         mutationFn: (id: string) => tracksHttp.deleteTrackFile(id),
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: [TRACKS_QUERY_KEY]});
+            queryClient
+                .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
+                .catch((err) => err instanceof Error
+                    ? console.error(err)
+                    : console.error(new Error(`Unknown error during query ${TRACKS_QUERY_KEY} invalidation`)));
         }
     });
 };
