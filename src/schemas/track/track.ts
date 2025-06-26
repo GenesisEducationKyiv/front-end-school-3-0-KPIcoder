@@ -8,5 +8,6 @@ export const trackSchema = zsu.object({
     genres: zsu.array(zsu.string()),
     slug: zsu.string(),
     coverImage: zsu.string(),
-    audioFile: zsu.string()
+    audioFile: zsu.string().optional(),
+    createdAt: zsu.string(),
 });

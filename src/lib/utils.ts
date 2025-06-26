@@ -6,3 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const isExternalLink = (link:string) => link.startsWith("http")
+
+export const promisifyValue = <T>(value: T) => new Promise<T>((resolve) => setTimeout(() => (resolve(value)), 1000))
