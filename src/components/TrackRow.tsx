@@ -19,10 +19,8 @@ interface TrackRowProps {
 }
 
 const TrackRow = ({ track, handleClickEdit, handleClickSelect }: TrackRowProps) => {
-  // Get store state and actions
   const { selectedIds, toggle } = useTrackSelectionStore();
 
-  // Compute if this track is selected using helper function
   const trackIsSelected = isSelected(selectedIds, track.id);
 
   const [showDialog, setShowDialog] = useState(false);
