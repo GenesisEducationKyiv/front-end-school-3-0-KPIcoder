@@ -6,5 +6,6 @@ export interface Track {
     genres: string[];
     slug: string;
     coverImage: string;
-    audioFile: string;
+    audioFile?: string;
+    createdAt: string;
 }
