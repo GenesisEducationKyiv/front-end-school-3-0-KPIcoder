@@ -41,7 +41,7 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.22.0",
+    "@eslint/js": "^9.30.0",
     "@playwright/experimental-ct-react": "^1.53.1",
     "@playwright/test": "^1.53.1",
     "@tanstack/router-plugin": "^1.120.15",
