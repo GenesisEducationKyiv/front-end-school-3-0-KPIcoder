@@ -116,8 +116,4 @@ export class TracksHttp implements TracksContract {
         })
         return await response.json() as Promise<void>;
     }
-
-
 }
-
-export const tracksHttp = new TracksHttp();

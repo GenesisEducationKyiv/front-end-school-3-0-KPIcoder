@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {tracksHttp} from "../services/TracksHttp.ts";
+import {tracksService} from "@/services";
 import {TrackDto} from "@/interfaces/dto/TrackDto.ts";
 import {TracksFilterOptions} from "@/interfaces/TracksFilterOptions.ts";
 
@@ -7,14 +7,14 @@ const TRACKS_QUERY_KEY = 'tracks';
 
 export const useTracksQuery = (filterOptions: TracksFilterOptions) => useQuery({
     queryKey: [TRACKS_QUERY_KEY, filterOptions],
-    queryFn: () => tracksHttp.getTracks(filterOptions),
+    queryFn: () => tracksService.getTracks(filterOptions),
 });
 
 export const useAddTrackMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (trackData: TrackDto) => tracksHttp.addTrack(trackData),
+        mutationFn: (trackData: TrackDto) => tracksService.addTrack(trackData),
         onSuccess: () =>
             queryClient
                 .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
@@ -29,7 +29,7 @@ export const useUpdateTrackMutation = () => {
 
     return useMutation({
         mutationFn: ({id, trackData}: { id: string, trackData: TrackDto }) =>
-            tracksHttp.updateTrack(id, trackData),
+            tracksService.updateTrack(id, trackData),
         onSuccess: () => {
             queryClient
                 .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
@@ -45,7 +45,7 @@ export const useDeleteTrackMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (id: string) => tracksHttp.deleteTrack(id),
+        mutationFn: (id: string) => tracksService.deleteTrack(id),
         onSettled: () => {
             queryClient
                 .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
@@ -60,7 +60,7 @@ export const useDeleteTracksMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (ids: string[]) => tracksHttp.deleteTracks(ids),
+        mutationFn: (ids: string[]) => tracksService.deleteTracks(ids),
         onSuccess: () =>
             queryClient.invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
     });
@@ -71,7 +71,7 @@ export const useUploadTrackFileMutation = () => {
 
     return useMutation({
         mutationFn: ({id, file}: { id: string, file: File }) =>
-            tracksHttp.uploadTrackFile(id, file),
+            tracksService.uploadTrackFile(id, file),
         onSuccess: () =>
             queryClient.invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})
     });
@@ -81,7 +81,7 @@ export const useDeleteTrackFileMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (id: string) => tracksHttp.deleteTrackFile(id),
+        mutationFn: (id: string) => tracksService.deleteTrackFile(id),
         onSuccess: () => {
             queryClient
                 .invalidateQueries({queryKey: [TRACKS_QUERY_KEY]})

@@ -11,7 +11,8 @@ export class GenresRpc implements GenresContract {
 
     constructor() {
         const transport = createConnectTransport({
-            baseUrl: config.apiBaseUrl
+            baseUrl: config.apiBaseUrl,
+            useBinaryFormat: true,
         })
         this.rpcClient = createClient(GenreService, transport)
     }
@@ -32,5 +33,3 @@ export class GenresRpc implements GenresContract {
 
     }
 }
-
-export const genresRpc = new GenresRpc();
