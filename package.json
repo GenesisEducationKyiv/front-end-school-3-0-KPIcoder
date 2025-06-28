@@ -12,6 +12,9 @@
     "test:ct": "playwright test -c playwright-ct.config.ts"
   },
   "dependencies": {
+    "@bufbuild/protobuf": "^2.6.0",
+    "@connectrpc/connect": "^2.0.2",
+    "@connectrpc/connect-web": "^2.0.2",
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-avatar": "^1.1.7",
@@ -42,6 +45,8 @@
     "zustand": "^5.0.6"
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.55.1",
+    "@bufbuild/protoc-gen-es": "^2.6.0",
     "@eslint/js": "^9.22.0",
     "@playwright/experimental-ct-react": "^1.53.1",
     "@playwright/test": "^1.53.1",
