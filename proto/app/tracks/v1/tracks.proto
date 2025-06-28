@@ -99,7 +99,9 @@ message DeleteTracksResponse {
 }
 
 message UploadTrackFileRequest {
-    bytes chunk = 1;
+    string id = 1;
+    string file_name = 2;
+    bytes chunk = 3;
 }
 
 message UploadTrackFileResponse {
