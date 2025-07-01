@@ -9,7 +9,7 @@ service TrackService {
     rpc UpdateTrack (UpdateTrackRequest) returns (UpdateTrackResponse);
     rpc DeleteTrack (DeleteTrackRequest) returns (DeleteTrackResponse);
     rpc DeleteTracks (DeleteTracksRequest) returns (DeleteTracksResponse);
-    rpc UploadTrackFile (stream UploadTrackFileRequest) returns (UploadTrackFileResponse);
+    rpc UploadTrackFile (UploadTrackFileRequest) returns (UploadTrackFileResponse);
     rpc StreamTrackAudio (StreamTrackAudioRequest) returns (stream StreamTrackAudioResponse);
 }
 
