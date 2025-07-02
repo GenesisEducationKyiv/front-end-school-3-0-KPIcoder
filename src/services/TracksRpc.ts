@@ -72,6 +72,18 @@ export class TracksRpc implements TracksContract {
         await this.rpcJsonClient.uploadTrackFile({id, fileName: file.name, chunk: binary});
     }
 
+    async streamAudio(id: string) {
+        const chunks: Uint8Array[] = []
+        const iter =  this.rpcClient.streamTrackAudio({ trackId: id });
+
+        for await (const res of iter) {
+            chunks.push(res.chunk)
+        }
+
+        const audio = new Blob(chunks, { type: "audio/mpeg" });
+        return URL.createObjectURL(audio);
+    }
+
     async deleteTrackFile(id: string) {
         await new Promise((r) => setTimeout(() => r(id)));
         throw new Error('Not implemented');

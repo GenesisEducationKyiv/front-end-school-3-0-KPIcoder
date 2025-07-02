@@ -14,12 +14,14 @@ import {
     areAllSelected,
     getSelectedCount
 } from "@/stores/useTrackSelectionStore";
+import AudioPlayerModal from "@/components/widgets/Player/AudioPlayerModal.tsx";
 
 interface TrackListProps {
     tracks: Track[];
 }
 
 const TrackList = ({ tracks }: TrackListProps) => {
+    const [playingTrackId, setPlayingTrackId] = useState<string | null>(null);
     const [editingTrack, setEditingTrack] = useState<Track | null>(null);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [showBulkDeleteConfirmation, setShowBulkDeleteConfirmation] = useState(false);
@@ -33,7 +35,7 @@ const TrackList = ({ tracks }: TrackListProps) => {
     const allSelected = areAllSelected(selectedIds, tracks);
 
     const handleClickSelect = (track: Track) => {
-        console.log("Playing track:", track.title);
+        setPlayingTrackId(track.id);
     };
 
     const handleEditTrack = (track: Track) => {
@@ -164,6 +166,8 @@ const TrackList = ({ tracks }: TrackListProps) => {
                     ))}
                 </div>
             </div>
+
+            <AudioPlayerModal open={!!playingTrackId} onOpenChange={() => setPlayingTrackId(null)} trackId={playingTrackId!} />
 
             <EditTrackForm
                 isOpen={isEditDialogOpen}

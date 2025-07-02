@@ -77,6 +77,13 @@ export const useUploadTrackFileMutation = () => {
     });
 };
 
+export const useTrackAudio = (trackId: string) =>
+    useQuery({
+        queryKey: [TRACKS_QUERY_KEY, trackId],
+        queryFn: () => tracksService.streamAudio(trackId),
+        enabled: !!trackId,
+    });
+
 export const useDeleteTrackFileMutation = () => {
     const queryClient = useQueryClient();
 
