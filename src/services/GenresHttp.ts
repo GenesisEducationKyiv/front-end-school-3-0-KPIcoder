@@ -26,5 +26,3 @@ export class GenresHttp implements GenresContract {
         }
     }
 }
-
-export const genresHttp = new GenresHttp();
