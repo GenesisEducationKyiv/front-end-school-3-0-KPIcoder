@@ -19,12 +19,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: my-vite-app
+          images: kpicoder-tracks-fe
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=pr,prefix=pr-
+            type=sha,prefix=sha-
 
       - name: Build Docker image
         uses: docker/build-push-action@v5
