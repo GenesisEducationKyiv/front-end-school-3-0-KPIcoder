@@ -117,7 +117,9 @@ export class TracksHttp implements TracksContract {
         return await response.json() as Promise<void>;
     }
 
-
+    async streamAudio(id: string) {
+        const response = await fetch(`${config.apiBaseUrl}/tracks/${id}/audio`)
+        const audio = await response.blob()
+        return URL.createObjectURL(audio)
+    }
 }
-
-export const tracksHttp = new TracksHttp();

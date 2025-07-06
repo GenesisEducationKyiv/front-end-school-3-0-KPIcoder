@@ -1,6 +1,6 @@
 import { Track } from "../interfaces/Track";
 import TrackRow from "./TrackRow";
-import { useState } from "react";
+import {lazy, useState } from "react";
 import EditTrackForm from "./EditTrackForm";
 import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
@@ -15,11 +15,14 @@ import {
     getSelectedCount
 } from "@/stores/useTrackSelectionStore";
 
+const AudioPlayerModal = lazy(() => import("@/components/widgets/Player/AudioPlayerModal.tsx")) ;
+
 interface TrackListProps {
     tracks: Track[];
 }
 
 const TrackList = ({ tracks }: TrackListProps) => {
+    const [playingTrackId, setPlayingTrackId] = useState<string | null>(null);
     const [editingTrack, setEditingTrack] = useState<Track | null>(null);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [showBulkDeleteConfirmation, setShowBulkDeleteConfirmation] = useState(false);
@@ -33,7 +36,7 @@ const TrackList = ({ tracks }: TrackListProps) => {
     const allSelected = areAllSelected(selectedIds, tracks);
 
     const handleClickSelect = (track: Track) => {
-        console.log("Playing track:", track.title);
+        setPlayingTrackId(track.id);
     };
 
     const handleEditTrack = (track: Track) => {
@@ -164,6 +167,8 @@ const TrackList = ({ tracks }: TrackListProps) => {
                     ))}
                 </div>
             </div>
+
+            <AudioPlayerModal open={!!playingTrackId} onOpenChange={() => setPlayingTrackId(null)} trackId={playingTrackId!} />
 
             <EditTrackForm
                 isOpen={isEditDialogOpen}

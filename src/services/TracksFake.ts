@@ -74,6 +74,13 @@ export class TracksFake implements TracksContract {
         }
         return promisifyValue(void 0);
     }
+    streamAudio(id: string) {
+        const buffer = Buffer.from(id);
+        const binary = new Uint8Array(buffer);
+        const blob = new Blob([binary], { type: "audio/mp3" });
+        const path = URL.createObjectURL(blob);
+        return promisifyValue(path);
+    }
 
     private applyFilters(filterOptions: TracksFilterOptions) {
         let filtered: Track[] = [];
@@ -82,7 +89,7 @@ export class TracksFake implements TracksContract {
         if (artist) filtered = this._tracks.filter(track => track.artist.includes(artist));
         if (search) filtered = this._tracks.filter(track => track.title.includes(search));
         if (genre) filtered = this._tracks.filter(track => track.genres.includes(genre));
-        if (sort) filtered = this._tracks.sort((a, b) => order === 'asc' ? a[sort].localeCompare(b[sort]) : b[sort].localeCompare(a[sort]));
+        if (sort) filtered = this._tracks.sort((a, b) => order === 'asc' ? a[sort]!.localeCompare(b[sort]!) : b[sort]!.localeCompare(a[sort]!));
 
         return filtered;
     }

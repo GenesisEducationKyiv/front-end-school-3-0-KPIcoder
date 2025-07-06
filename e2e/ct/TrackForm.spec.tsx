@@ -13,6 +13,16 @@ test.describe('TrackForm', () => {
             });
         });
 
+        await page.route('**/app.genres.v1.GenreService/GetGenres', async route => {
+            await route.fulfill({
+                status: 200,
+                contentType: 'application/json',
+                body: JSON.stringify({
+                    genres: ['Genre 1', 'Genre 2'],
+                }),
+            });
+        });
+
         const component = await mount(<TrackForm onSubmit={() => {}} btnText={'Test'}/>);
 
         const titleInput = component.getByTestId('input-title');

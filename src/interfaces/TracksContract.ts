@@ -17,4 +17,6 @@ export interface TracksContract {
     uploadTrackFile: (id: string, file: File) => Promise<void>
 
     deleteTrackFile: (id: string) => Promise<void>
+
+    streamAudio: (id: string) => Promise<string>
 }
