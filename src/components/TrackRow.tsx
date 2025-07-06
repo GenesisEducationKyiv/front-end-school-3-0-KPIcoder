@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {lazy, useState} from "react";
 import { Trash2, Edit, Play, Upload } from "lucide-react";
 
 import { Track } from "../interfaces/Track";
@@ -8,15 +8,17 @@ import { MenuDropdown, MenuDropdownItem } from "./ui/menu-dropdown";
 import { cn } from "@/lib/utils";
 import { DEFAULT_IMAGE_COVER } from "@/constants/default-image-url";
 import { Checkbox } from "@/components/ui/checkbox";
-import UploadAudioModal from "./UploadAudioModal";
 import ConfirmationModal from "./widgets/ConfirmationModal";
 import { ButtonSpinner } from "./ui/button-spinner";
+ 
+const UploadAudioModal = lazy(() => import("./UploadAudioModal")); 
 
 interface TrackRowProps {
   track: Track;
   handleClickEdit: (track: Track) => void;
   handleClickSelect: (track: Track) => void;
 }
+
 
 const TrackRow = ({ track, handleClickEdit, handleClickSelect }: TrackRowProps) => {
   const { selectedIds, toggle } = useTrackSelectionStore();

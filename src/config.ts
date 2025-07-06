@@ -1,4 +1,4 @@
 export const config = {
-    apiBaseUrl: 'http://localhost:8000/api',
+    apiBaseUrl: import.meta.env.VITE_API_BASE_URL,
     adapter: 'rpc' as 'rest' | 'rpc'
 } as const
