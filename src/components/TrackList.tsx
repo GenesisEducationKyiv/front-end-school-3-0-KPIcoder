@@ -1,6 +1,6 @@
 import { Track } from "../interfaces/Track";
 import TrackRow from "./TrackRow";
-import { useState } from "react";
+import {lazy, useState } from "react";
 import EditTrackForm from "./EditTrackForm";
 import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
@@ -14,7 +14,8 @@ import {
     areAllSelected,
     getSelectedCount
 } from "@/stores/useTrackSelectionStore";
-import AudioPlayerModal from "@/components/widgets/Player/AudioPlayerModal.tsx";
+
+const AudioPlayerModal = lazy(() => import("@/components/widgets/Player/AudioPlayerModal.tsx")) ;
 
 interface TrackListProps {
     tracks: Track[];
