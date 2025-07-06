@@ -1,38 +1,31 @@
-import { useState } from "react";
-import { useAddTrackMutation } from "@/hooks/useTracksApi";
-import { Button } from "@/components/ui/button";
-import { TrackDto } from "@/interfaces/dto/TrackDto";
-import TrackForm from "@/components/TrackForm";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { PlusCircle } from "lucide-react";
-import { DEFAULT_IMAGE_COVER } from "@/constants/default-image-url";
-
+import { useState } from 'react';
+import { useAddTrackMutation } from '@/hooks/useTracksApi';
+import { Button } from '@/components/ui/button';
+import { TrackDto } from '@/interfaces/dto/TrackDto';
+import TrackForm from '@/components/TrackForm';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { PlusCircle } from 'lucide-react';
+import { DEFAULT_IMAGE_COVER } from '@/constants/default-image-url';
 
 export default function AddTrackForm() {
   const [open, setOpen] = useState(false);
   const addTrackMutation = useAddTrackMutation();
 
   const defaultValues: Partial<TrackDto> = {
-    title: "",
-    artist: "",
-    album: "",
+    title: '',
+    artist: '',
+    album: '',
     genres: [],
-    coverImage: ""
+    coverImage: '',
   };
 
   const handleAddTrack = (trackData: TrackDto) => {
     let dto = trackData;
-    if(!trackData.coverImage) dto = {...trackData,coverImage: DEFAULT_IMAGE_COVER};
+    if (!trackData.coverImage) dto = { ...trackData, coverImage: DEFAULT_IMAGE_COVER };
     addTrackMutation.mutate(dto, {
       onSuccess: () => {
         setOpen(false);
-      }
+      },
     });
   };
 
@@ -44,8 +37,8 @@ export default function AddTrackForm() {
           <span>Add Track</span>
         </Button>
       </DialogTrigger>
-      
-      <DialogContent 
+
+      <DialogContent
         className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 w-full max-w-md rounded-md bg-background border shadow-md z-50"
         onInteractOutside={(e) => {
           if (e.target && (e.target as HTMLElement).tagName === 'BUTTON') {
@@ -55,18 +48,17 @@ export default function AddTrackForm() {
       >
         <div className="flex justify-between items-center mb-4">
           <DialogTitle className="text-lg font-semibold">Add New Track</DialogTitle>
-      
         </div>
-        
+
         <DialogDescription className="text-sm text-muted-foreground mb-4">
           Fill in the details below to add a new track to the library
         </DialogDescription>
-        
+
         <div className="mt-2">
-          <TrackForm 
-            defaultValues={defaultValues} 
-            btnText={addTrackMutation.isPending ? "Adding..." : "Add Track"} 
-            onSubmit={handleAddTrack} 
+          <TrackForm
+            defaultValues={defaultValues}
+            btnText={addTrackMutation.isPending ? 'Adding...' : 'Add Track'}
+            onSubmit={handleAddTrack}
           />
         </div>
 

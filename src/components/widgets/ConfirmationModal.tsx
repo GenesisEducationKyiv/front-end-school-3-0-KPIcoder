@@ -1,14 +1,7 @@
-import { ReactNode } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
-import { AlertTriangle } from "lucide-react";
+import { ReactNode } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Button } from '../ui/button';
+import { AlertTriangle } from 'lucide-react';
 
 interface ConfirmationModalProps {
   className?: string;
@@ -59,7 +52,7 @@ interface ConfirmationModalProps {
    * Variant for the confirm button
    * @default "default"
    */
-  confirmVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  confirmVariant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
   /**
    * Whether to show a warning icon in the header
    * @default false
@@ -73,18 +66,17 @@ interface ConfirmationModalProps {
 export default function ConfirmationModal({
   open,
   setOpen,
-  title = "Confirmation",
+  title = 'Confirmation',
   description,
   text,
   handleClickConfirm,
   handleClickCancel,
   isLoading = false,
-  confirmText = "Confirm",
-  cancelText = "Cancel",
-  confirmVariant = "default",
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+  confirmVariant = 'default',
   showWarningIcon = false,
 }: ConfirmationModalProps) {
-  
   const onCancel = () => {
     handleClickCancel();
     setOpen(false);
@@ -104,28 +96,16 @@ export default function ConfirmationModal({
       <DialogContent className="sm:max-w-md" data-testid="confirm-dialog">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            {showWarningIcon && (
-              <AlertTriangle className="h-5 w-5 text-amber-500" />
-            )}
+            {showWarningIcon && <AlertTriangle className="h-5 w-5 text-amber-500" />}
             {title}
           </DialogTitle>
-          {description && (
-            <DialogDescription>{description}</DialogDescription>
-          )}
+          {description && <DialogDescription>{description}</DialogDescription>}
         </DialogHeader>
 
-        <div className="py-4">
-          {typeof text === "string" ? <p>{text}</p> : text}
-        </div>
+        <div className="py-4">{typeof text === 'string' ? <p>{text}</p> : text}</div>
 
         <DialogFooter className="flex justify-end gap-2 sm:justify-end">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onCancel}
-            disabled={isLoading}
-            data-testid="cancel-delete"
-          >
+          <Button type="button" variant="outline" onClick={onCancel} disabled={isLoading} data-testid="cancel-delete">
             {cancelText}
           </Button>
           <Button
@@ -141,4 +121,4 @@ export default function ConfirmationModal({
       </DialogContent>
     </Dialog>
   );
-} 
+}

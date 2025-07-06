@@ -1,4 +1,4 @@
 export type WithMetaData<T, U> = {
-    data: T
-    meta: U
-}
+  data: T;
+  meta: U;
+};

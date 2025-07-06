@@ -2,20 +2,23 @@
 // @generated from file app/tracks/v1/tracks.proto (package app.tracks.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Message } from "@bufbuild/protobuf";
+import type { GenFile, GenMessage, GenService } from '@bufbuild/protobuf/codegenv2';
+import { fileDesc, messageDesc, serviceDesc } from '@bufbuild/protobuf/codegenv2';
+import type { Message } from '@bufbuild/protobuf';
 
 /**
  * Describes the file app/tracks/v1/tracks.proto.
  */
-export const file_app_tracks_v1_tracks: GenFile = /*@__PURE__*/
-  fileDesc("ChphcHAvdHJhY2tzL3YxL3RyYWNrcy5wcm90bxINYXBwLnRyYWNrcy52MSKwAQoFVHJhY2sSCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSDgoGYXJ0aXN0GAMgASgJEg0KBWFsYnVtGAQgASgJEg4KBmdlbnJlcxgFIAMoCRIMCgRzbHVnGAYgASgJEhMKC2NvdmVyX2ltYWdlGAcgASgJEhIKCmF1ZGlvX2ZpbGUYCCABKAkSEgoKY3JlYXRlZF9hdBgJIAEoCRISCgp1cGRhdGVkX2F0GAogASgJIksKCE1ldGFkYXRhEgwKBHBhZ2UYASABKA0SDQoFbGltaXQYAiABKA0SDQoFdG90YWwYAyABKA0SEwoLdG90YWxfcGFnZXMYBCABKA0ifAoRTGlzdFRyYWNrc1JlcXVlc3QSDAoEcGFnZRgBIAEoDRINCgVsaW1pdBgCIAEoDRIMCgRzb3J0GAMgASgJEg0KBW9yZGVyGAQgASgJEg4KBnNlYXJjaBgFIAEoCRINCgVnZW5yZRgGIAEoCRIOCgZhcnRpc3QYByABKAkiXwoSTGlzdFRyYWNrc1Jlc3BvbnNlEiIKBGRhdGEYASADKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrEiUKBG1ldGEYAiABKAsyFy5hcHAudHJhY2tzLnYxLk1ldGFkYXRhImcKEkNyZWF0ZVRyYWNrUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIOCgZhcnRpc3QYAiABKAkSDQoFYWxidW0YAyABKAkSDgoGZ2VucmVzGAQgAygJEhMKC2NvdmVyX2ltYWdlGAUgASgJIjoKE0NyZWF0ZVRyYWNrUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrIh8KD0dldFRyYWNrUmVxdWVzdBIMCgRzbHVnGAEgASgJIjcKEEdldFRyYWNrUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrInMKElVwZGF0ZVRyYWNrUmVxdWVzdBIKCgJpZBgBIAEoCRINCgV0aXRsZRgCIAEoCRIOCgZhcnRpc3QYAyABKAkSDQoFYWxidW0YBCABKAkSDgoGZ2VucmVzGAUgAygJEhMKC2NvdmVyX2ltYWdlGAYgASgJIjoKE1VwZGF0ZVRyYWNrUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrIiAKEkRlbGV0ZVRyYWNrUmVxdWVzdBIKCgJpZBgBIAEoCSImChNEZWxldGVUcmFja1Jlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiIgoTRGVsZXRlVHJhY2tzUmVxdWVzdBILCgNpZHMYASADKAkiNwoURGVsZXRlVHJhY2tzUmVzcG9uc2USDwoHc3VjY2VzcxgBIAMoCRIOCgZmYWlsZWQYAiADKAkiRgoWVXBsb2FkVHJhY2tGaWxlUmVxdWVzdBIKCgJpZBgBIAEoCRIRCglmaWxlX25hbWUYAiABKAkSDQoFY2h1bmsYAyABKAwiPgoXVXBsb2FkVHJhY2tGaWxlUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrIisKF1N0cmVhbVRyYWNrQXVkaW9SZXF1ZXN0EhAKCHRyYWNrX2lkGAEgASgJIikKGFN0cmVhbVRyYWNrQXVkaW9SZXNwb25zZRINCgVjaHVuaxgBIAEoDDLSBQoMVHJhY2tTZXJ2aWNlElEKCkxpc3RUcmFja3MSIC5hcHAudHJhY2tzLnYxLkxpc3RUcmFja3NSZXF1ZXN0GiEuYXBwLnRyYWNrcy52MS5MaXN0VHJhY2tzUmVzcG9uc2USVAoLQ3JlYXRlVHJhY2sSIS5hcHAudHJhY2tzLnYxLkNyZWF0ZVRyYWNrUmVxdWVzdBoiLmFwcC50cmFja3MudjEuQ3JlYXRlVHJhY2tSZXNwb25zZRJLCghHZXRUcmFjaxIeLmFwcC50cmFja3MudjEuR2V0VHJhY2tSZXF1ZXN0Gh8uYXBwLnRyYWNrcy52MS5HZXRUcmFja1Jlc3BvbnNlElQKC1VwZGF0ZVRyYWNrEiEuYXBwLnRyYWNrcy52MS5VcGRhdGVUcmFja1JlcXVlc3QaIi5hcHAudHJhY2tzLnYxLlVwZGF0ZVRyYWNrUmVzcG9uc2USVAoLRGVsZXRlVHJhY2sSIS5hcHAudHJhY2tzLnYxLkRlbGV0ZVRyYWNrUmVxdWVzdBoiLmFwcC50cmFja3MudjEuRGVsZXRlVHJhY2tSZXNwb25zZRJXCgxEZWxldGVUcmFja3MSIi5hcHAudHJhY2tzLnYxLkRlbGV0ZVRyYWNrc1JlcXVlc3QaIy5hcHAudHJhY2tzLnYxLkRlbGV0ZVRyYWNrc1Jlc3BvbnNlEmAKD1VwbG9hZFRyYWNrRmlsZRIlLmFwcC50cmFja3MudjEuVXBsb2FkVHJhY2tGaWxlUmVxdWVzdBomLmFwcC50cmFja3MudjEuVXBsb2FkVHJhY2tGaWxlUmVzcG9uc2USZQoQU3RyZWFtVHJhY2tBdWRpbxImLmFwcC50cmFja3MudjEuU3RyZWFtVHJhY2tBdWRpb1JlcXVlc3QaJy5hcHAudHJhY2tzLnYxLlN0cmVhbVRyYWNrQXVkaW9SZXNwb25zZTABYgZwcm90bzM");
+export const file_app_tracks_v1_tracks: GenFile =
+  /*@__PURE__*/
+  fileDesc(
+    'ChphcHAvdHJhY2tzL3YxL3RyYWNrcy5wcm90bxINYXBwLnRyYWNrcy52MSKwAQoFVHJhY2sSCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSDgoGYXJ0aXN0GAMgASgJEg0KBWFsYnVtGAQgASgJEg4KBmdlbnJlcxgFIAMoCRIMCgRzbHVnGAYgASgJEhMKC2NvdmVyX2ltYWdlGAcgASgJEhIKCmF1ZGlvX2ZpbGUYCCABKAkSEgoKY3JlYXRlZF9hdBgJIAEoCRISCgp1cGRhdGVkX2F0GAogASgJIksKCE1ldGFkYXRhEgwKBHBhZ2UYASABKA0SDQoFbGltaXQYAiABKA0SDQoFdG90YWwYAyABKA0SEwoLdG90YWxfcGFnZXMYBCABKA0ifAoRTGlzdFRyYWNrc1JlcXVlc3QSDAoEcGFnZRgBIAEoDRINCgVsaW1pdBgCIAEoDRIMCgRzb3J0GAMgASgJEg0KBW9yZGVyGAQgASgJEg4KBnNlYXJjaBgFIAEoCRINCgVnZW5yZRgGIAEoCRIOCgZhcnRpc3QYByABKAkiXwoSTGlzdFRyYWNrc1Jlc3BvbnNlEiIKBGRhdGEYASADKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrEiUKBG1ldGEYAiABKAsyFy5hcHAudHJhY2tzLnYxLk1ldGFkYXRhImcKEkNyZWF0ZVRyYWNrUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIOCgZhcnRpc3QYAiABKAkSDQoFYWxidW0YAyABKAkSDgoGZ2VucmVzGAQgAygJEhMKC2NvdmVyX2ltYWdlGAUgASgJIjoKE0NyZWF0ZVRyYWNrUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrIh8KD0dldFRyYWNrUmVxdWVzdBIMCgRzbHVnGAEgASgJIjcKEEdldFRyYWNrUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrInMKElVwZGF0ZVRyYWNrUmVxdWVzdBIKCgJpZBgBIAEoCRINCgV0aXRsZRgCIAEoCRIOCgZhcnRpc3QYAyABKAkSDQoFYWxidW0YBCABKAkSDgoGZ2VucmVzGAUgAygJEhMKC2NvdmVyX2ltYWdlGAYgASgJIjoKE1VwZGF0ZVRyYWNrUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrIiAKEkRlbGV0ZVRyYWNrUmVxdWVzdBIKCgJpZBgBIAEoCSImChNEZWxldGVUcmFja1Jlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiIgoTRGVsZXRlVHJhY2tzUmVxdWVzdBILCgNpZHMYASADKAkiNwoURGVsZXRlVHJhY2tzUmVzcG9uc2USDwoHc3VjY2VzcxgBIAMoCRIOCgZmYWlsZWQYAiADKAkiRgoWVXBsb2FkVHJhY2tGaWxlUmVxdWVzdBIKCgJpZBgBIAEoCRIRCglmaWxlX25hbWUYAiABKAkSDQoFY2h1bmsYAyABKAwiPgoXVXBsb2FkVHJhY2tGaWxlUmVzcG9uc2USIwoFdHJhY2sYASABKAsyFC5hcHAudHJhY2tzLnYxLlRyYWNrIisKF1N0cmVhbVRyYWNrQXVkaW9SZXF1ZXN0EhAKCHRyYWNrX2lkGAEgASgJIikKGFN0cmVhbVRyYWNrQXVkaW9SZXNwb25zZRINCgVjaHVuaxgBIAEoDDLSBQoMVHJhY2tTZXJ2aWNlElEKCkxpc3RUcmFja3MSIC5hcHAudHJhY2tzLnYxLkxpc3RUcmFja3NSZXF1ZXN0GiEuYXBwLnRyYWNrcy52MS5MaXN0VHJhY2tzUmVzcG9uc2USVAoLQ3JlYXRlVHJhY2sSIS5hcHAudHJhY2tzLnYxLkNyZWF0ZVRyYWNrUmVxdWVzdBoiLmFwcC50cmFja3MudjEuQ3JlYXRlVHJhY2tSZXNwb25zZRJLCghHZXRUcmFjaxIeLmFwcC50cmFja3MudjEuR2V0VHJhY2tSZXF1ZXN0Gh8uYXBwLnRyYWNrcy52MS5HZXRUcmFja1Jlc3BvbnNlElQKC1VwZGF0ZVRyYWNrEiEuYXBwLnRyYWNrcy52MS5VcGRhdGVUcmFja1JlcXVlc3QaIi5hcHAudHJhY2tzLnYxLlVwZGF0ZVRyYWNrUmVzcG9uc2USVAoLRGVsZXRlVHJhY2sSIS5hcHAudHJhY2tzLnYxLkRlbGV0ZVRyYWNrUmVxdWVzdBoiLmFwcC50cmFja3MudjEuRGVsZXRlVHJhY2tSZXNwb25zZRJXCgxEZWxldGVUcmFja3MSIi5hcHAudHJhY2tzLnYxLkRlbGV0ZVRyYWNrc1JlcXVlc3QaIy5hcHAudHJhY2tzLnYxLkRlbGV0ZVRyYWNrc1Jlc3BvbnNlEmAKD1VwbG9hZFRyYWNrRmlsZRIlLmFwcC50cmFja3MudjEuVXBsb2FkVHJhY2tGaWxlUmVxdWVzdBomLmFwcC50cmFja3MudjEuVXBsb2FkVHJhY2tGaWxlUmVzcG9uc2USZQoQU3RyZWFtVHJhY2tBdWRpbxImLmFwcC50cmFja3MudjEuU3RyZWFtVHJhY2tBdWRpb1JlcXVlc3QaJy5hcHAudHJhY2tzLnYxLlN0cmVhbVRyYWNrQXVkaW9SZXNwb25zZTABYgZwcm90bzM'
+  );
 
 /**
  * @generated from message app.tracks.v1.Track
  */
-export type Track = Message<"app.tracks.v1.Track"> & {
+export type Track = Message<'app.tracks.v1.Track'> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -71,13 +74,12 @@ export type Track = Message<"app.tracks.v1.Track"> & {
  * Describes the message app.tracks.v1.Track.
  * Use `create(TrackSchema)` to create a new message.
  */
-export const TrackSchema: GenMessage<Track> = /*@__PURE__*/
-  messageDesc(file_app_tracks_v1_tracks, 0);
+export const TrackSchema: GenMessage<Track> = /*@__PURE__*/ messageDesc(file_app_tracks_v1_tracks, 0);
 
 /**
  * @generated from message app.tracks.v1.Metadata
  */
-export type Metadata = Message<"app.tracks.v1.Metadata"> & {
+export type Metadata = Message<'app.tracks.v1.Metadata'> & {
   /**
    * @generated from field: uint32 page = 1;
    */
@@ -103,13 +105,12 @@ export type Metadata = Message<"app.tracks.v1.Metadata"> & {
  * Describes the message app.tracks.v1.Metadata.
  * Use `create(MetadataSchema)` to create a new message.
  */
-export const MetadataSchema: GenMessage<Metadata> = /*@__PURE__*/
-  messageDesc(file_app_tracks_v1_tracks, 1);
+export const MetadataSchema: GenMessage<Metadata> = /*@__PURE__*/ messageDesc(file_app_tracks_v1_tracks, 1);
 
 /**
  * @generated from message app.tracks.v1.ListTracksRequest
  */
-export type ListTracksRequest = Message<"app.tracks.v1.ListTracksRequest"> & {
+export type ListTracksRequest = Message<'app.tracks.v1.ListTracksRequest'> & {
   /**
    * @generated from field: uint32 page = 1;
    */
@@ -150,13 +151,14 @@ export type ListTracksRequest = Message<"app.tracks.v1.ListTracksRequest"> & {
  * Describes the message app.tracks.v1.ListTracksRequest.
  * Use `create(ListTracksRequestSchema)` to create a new message.
  */
-export const ListTracksRequestSchema: GenMessage<ListTracksRequest> = /*@__PURE__*/
+export const ListTracksRequestSchema: GenMessage<ListTracksRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 2);
 
 /**
  * @generated from message app.tracks.v1.ListTracksResponse
  */
-export type ListTracksResponse = Message<"app.tracks.v1.ListTracksResponse"> & {
+export type ListTracksResponse = Message<'app.tracks.v1.ListTracksResponse'> & {
   /**
    * @generated from field: repeated app.tracks.v1.Track data = 1;
    */
@@ -172,13 +174,14 @@ export type ListTracksResponse = Message<"app.tracks.v1.ListTracksResponse"> & {
  * Describes the message app.tracks.v1.ListTracksResponse.
  * Use `create(ListTracksResponseSchema)` to create a new message.
  */
-export const ListTracksResponseSchema: GenMessage<ListTracksResponse> = /*@__PURE__*/
+export const ListTracksResponseSchema: GenMessage<ListTracksResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 3);
 
 /**
  * @generated from message app.tracks.v1.CreateTrackRequest
  */
-export type CreateTrackRequest = Message<"app.tracks.v1.CreateTrackRequest"> & {
+export type CreateTrackRequest = Message<'app.tracks.v1.CreateTrackRequest'> & {
   /**
    * @generated from field: string title = 1;
    */
@@ -209,13 +212,14 @@ export type CreateTrackRequest = Message<"app.tracks.v1.CreateTrackRequest"> & {
  * Describes the message app.tracks.v1.CreateTrackRequest.
  * Use `create(CreateTrackRequestSchema)` to create a new message.
  */
-export const CreateTrackRequestSchema: GenMessage<CreateTrackRequest> = /*@__PURE__*/
+export const CreateTrackRequestSchema: GenMessage<CreateTrackRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 4);
 
 /**
  * @generated from message app.tracks.v1.CreateTrackResponse
  */
-export type CreateTrackResponse = Message<"app.tracks.v1.CreateTrackResponse"> & {
+export type CreateTrackResponse = Message<'app.tracks.v1.CreateTrackResponse'> & {
   /**
    * @generated from field: app.tracks.v1.Track track = 1;
    */
@@ -226,13 +230,14 @@ export type CreateTrackResponse = Message<"app.tracks.v1.CreateTrackResponse"> &
  * Describes the message app.tracks.v1.CreateTrackResponse.
  * Use `create(CreateTrackResponseSchema)` to create a new message.
  */
-export const CreateTrackResponseSchema: GenMessage<CreateTrackResponse> = /*@__PURE__*/
+export const CreateTrackResponseSchema: GenMessage<CreateTrackResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 5);
 
 /**
  * @generated from message app.tracks.v1.GetTrackRequest
  */
-export type GetTrackRequest = Message<"app.tracks.v1.GetTrackRequest"> & {
+export type GetTrackRequest = Message<'app.tracks.v1.GetTrackRequest'> & {
   /**
    * @generated from field: string slug = 1;
    */
@@ -243,13 +248,14 @@ export type GetTrackRequest = Message<"app.tracks.v1.GetTrackRequest"> & {
  * Describes the message app.tracks.v1.GetTrackRequest.
  * Use `create(GetTrackRequestSchema)` to create a new message.
  */
-export const GetTrackRequestSchema: GenMessage<GetTrackRequest> = /*@__PURE__*/
+export const GetTrackRequestSchema: GenMessage<GetTrackRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 6);
 
 /**
  * @generated from message app.tracks.v1.GetTrackResponse
  */
-export type GetTrackResponse = Message<"app.tracks.v1.GetTrackResponse"> & {
+export type GetTrackResponse = Message<'app.tracks.v1.GetTrackResponse'> & {
   /**
    * @generated from field: app.tracks.v1.Track track = 1;
    */
@@ -260,13 +266,14 @@ export type GetTrackResponse = Message<"app.tracks.v1.GetTrackResponse"> & {
  * Describes the message app.tracks.v1.GetTrackResponse.
  * Use `create(GetTrackResponseSchema)` to create a new message.
  */
-export const GetTrackResponseSchema: GenMessage<GetTrackResponse> = /*@__PURE__*/
+export const GetTrackResponseSchema: GenMessage<GetTrackResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 7);
 
 /**
  * @generated from message app.tracks.v1.UpdateTrackRequest
  */
-export type UpdateTrackRequest = Message<"app.tracks.v1.UpdateTrackRequest"> & {
+export type UpdateTrackRequest = Message<'app.tracks.v1.UpdateTrackRequest'> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -302,13 +309,14 @@ export type UpdateTrackRequest = Message<"app.tracks.v1.UpdateTrackRequest"> & {
  * Describes the message app.tracks.v1.UpdateTrackRequest.
  * Use `create(UpdateTrackRequestSchema)` to create a new message.
  */
-export const UpdateTrackRequestSchema: GenMessage<UpdateTrackRequest> = /*@__PURE__*/
+export const UpdateTrackRequestSchema: GenMessage<UpdateTrackRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 8);
 
 /**
  * @generated from message app.tracks.v1.UpdateTrackResponse
  */
-export type UpdateTrackResponse = Message<"app.tracks.v1.UpdateTrackResponse"> & {
+export type UpdateTrackResponse = Message<'app.tracks.v1.UpdateTrackResponse'> & {
   /**
    * @generated from field: app.tracks.v1.Track track = 1;
    */
@@ -319,13 +327,14 @@ export type UpdateTrackResponse = Message<"app.tracks.v1.UpdateTrackResponse"> &
  * Describes the message app.tracks.v1.UpdateTrackResponse.
  * Use `create(UpdateTrackResponseSchema)` to create a new message.
  */
-export const UpdateTrackResponseSchema: GenMessage<UpdateTrackResponse> = /*@__PURE__*/
+export const UpdateTrackResponseSchema: GenMessage<UpdateTrackResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 9);
 
 /**
  * @generated from message app.tracks.v1.DeleteTrackRequest
  */
-export type DeleteTrackRequest = Message<"app.tracks.v1.DeleteTrackRequest"> & {
+export type DeleteTrackRequest = Message<'app.tracks.v1.DeleteTrackRequest'> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -336,13 +345,14 @@ export type DeleteTrackRequest = Message<"app.tracks.v1.DeleteTrackRequest"> & {
  * Describes the message app.tracks.v1.DeleteTrackRequest.
  * Use `create(DeleteTrackRequestSchema)` to create a new message.
  */
-export const DeleteTrackRequestSchema: GenMessage<DeleteTrackRequest> = /*@__PURE__*/
+export const DeleteTrackRequestSchema: GenMessage<DeleteTrackRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 10);
 
 /**
  * @generated from message app.tracks.v1.DeleteTrackResponse
  */
-export type DeleteTrackResponse = Message<"app.tracks.v1.DeleteTrackResponse"> & {
+export type DeleteTrackResponse = Message<'app.tracks.v1.DeleteTrackResponse'> & {
   /**
    * @generated from field: bool success = 1;
    */
@@ -353,13 +363,14 @@ export type DeleteTrackResponse = Message<"app.tracks.v1.DeleteTrackResponse"> &
  * Describes the message app.tracks.v1.DeleteTrackResponse.
  * Use `create(DeleteTrackResponseSchema)` to create a new message.
  */
-export const DeleteTrackResponseSchema: GenMessage<DeleteTrackResponse> = /*@__PURE__*/
+export const DeleteTrackResponseSchema: GenMessage<DeleteTrackResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 11);
 
 /**
  * @generated from message app.tracks.v1.DeleteTracksRequest
  */
-export type DeleteTracksRequest = Message<"app.tracks.v1.DeleteTracksRequest"> & {
+export type DeleteTracksRequest = Message<'app.tracks.v1.DeleteTracksRequest'> & {
   /**
    * @generated from field: repeated string ids = 1;
    */
@@ -370,13 +381,14 @@ export type DeleteTracksRequest = Message<"app.tracks.v1.DeleteTracksRequest"> &
  * Describes the message app.tracks.v1.DeleteTracksRequest.
  * Use `create(DeleteTracksRequestSchema)` to create a new message.
  */
-export const DeleteTracksRequestSchema: GenMessage<DeleteTracksRequest> = /*@__PURE__*/
+export const DeleteTracksRequestSchema: GenMessage<DeleteTracksRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 12);
 
 /**
  * @generated from message app.tracks.v1.DeleteTracksResponse
  */
-export type DeleteTracksResponse = Message<"app.tracks.v1.DeleteTracksResponse"> & {
+export type DeleteTracksResponse = Message<'app.tracks.v1.DeleteTracksResponse'> & {
   /**
    * @generated from field: repeated string success = 1;
    */
@@ -392,13 +404,14 @@ export type DeleteTracksResponse = Message<"app.tracks.v1.DeleteTracksResponse">
  * Describes the message app.tracks.v1.DeleteTracksResponse.
  * Use `create(DeleteTracksResponseSchema)` to create a new message.
  */
-export const DeleteTracksResponseSchema: GenMessage<DeleteTracksResponse> = /*@__PURE__*/
+export const DeleteTracksResponseSchema: GenMessage<DeleteTracksResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 13);
 
 /**
  * @generated from message app.tracks.v1.UploadTrackFileRequest
  */
-export type UploadTrackFileRequest = Message<"app.tracks.v1.UploadTrackFileRequest"> & {
+export type UploadTrackFileRequest = Message<'app.tracks.v1.UploadTrackFileRequest'> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -419,13 +432,14 @@ export type UploadTrackFileRequest = Message<"app.tracks.v1.UploadTrackFileReque
  * Describes the message app.tracks.v1.UploadTrackFileRequest.
  * Use `create(UploadTrackFileRequestSchema)` to create a new message.
  */
-export const UploadTrackFileRequestSchema: GenMessage<UploadTrackFileRequest> = /*@__PURE__*/
+export const UploadTrackFileRequestSchema: GenMessage<UploadTrackFileRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 14);
 
 /**
  * @generated from message app.tracks.v1.UploadTrackFileResponse
  */
-export type UploadTrackFileResponse = Message<"app.tracks.v1.UploadTrackFileResponse"> & {
+export type UploadTrackFileResponse = Message<'app.tracks.v1.UploadTrackFileResponse'> & {
   /**
    * @generated from field: app.tracks.v1.Track track = 1;
    */
@@ -436,13 +450,14 @@ export type UploadTrackFileResponse = Message<"app.tracks.v1.UploadTrackFileResp
  * Describes the message app.tracks.v1.UploadTrackFileResponse.
  * Use `create(UploadTrackFileResponseSchema)` to create a new message.
  */
-export const UploadTrackFileResponseSchema: GenMessage<UploadTrackFileResponse> = /*@__PURE__*/
+export const UploadTrackFileResponseSchema: GenMessage<UploadTrackFileResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 15);
 
 /**
  * @generated from message app.tracks.v1.StreamTrackAudioRequest
  */
-export type StreamTrackAudioRequest = Message<"app.tracks.v1.StreamTrackAudioRequest"> & {
+export type StreamTrackAudioRequest = Message<'app.tracks.v1.StreamTrackAudioRequest'> & {
   /**
    * @generated from field: string track_id = 1;
    */
@@ -453,13 +468,14 @@ export type StreamTrackAudioRequest = Message<"app.tracks.v1.StreamTrackAudioReq
  * Describes the message app.tracks.v1.StreamTrackAudioRequest.
  * Use `create(StreamTrackAudioRequestSchema)` to create a new message.
  */
-export const StreamTrackAudioRequestSchema: GenMessage<StreamTrackAudioRequest> = /*@__PURE__*/
+export const StreamTrackAudioRequestSchema: GenMessage<StreamTrackAudioRequest> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 16);
 
 /**
  * @generated from message app.tracks.v1.StreamTrackAudioResponse
  */
-export type StreamTrackAudioResponse = Message<"app.tracks.v1.StreamTrackAudioResponse"> & {
+export type StreamTrackAudioResponse = Message<'app.tracks.v1.StreamTrackAudioResponse'> & {
   /**
    * @generated from field: bytes chunk = 1;
    */
@@ -470,7 +486,8 @@ export type StreamTrackAudioResponse = Message<"app.tracks.v1.StreamTrackAudioRe
  * Describes the message app.tracks.v1.StreamTrackAudioResponse.
  * Use `create(StreamTrackAudioResponseSchema)` to create a new message.
  */
-export const StreamTrackAudioResponseSchema: GenMessage<StreamTrackAudioResponse> = /*@__PURE__*/
+export const StreamTrackAudioResponseSchema: GenMessage<StreamTrackAudioResponse> =
+  /*@__PURE__*/
   messageDesc(file_app_tracks_v1_tracks, 17);
 
 /**
@@ -481,66 +498,64 @@ export const TrackService: GenService<{
    * @generated from rpc app.tracks.v1.TrackService.ListTracks
    */
   listTracks: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof ListTracksRequestSchema;
     output: typeof ListTracksResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.CreateTrack
    */
   createTrack: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof CreateTrackRequestSchema;
     output: typeof CreateTrackResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.GetTrack
    */
   getTrack: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof GetTrackRequestSchema;
     output: typeof GetTrackResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.UpdateTrack
    */
   updateTrack: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof UpdateTrackRequestSchema;
     output: typeof UpdateTrackResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.DeleteTrack
    */
   deleteTrack: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof DeleteTrackRequestSchema;
     output: typeof DeleteTrackResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.DeleteTracks
    */
   deleteTracks: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof DeleteTracksRequestSchema;
     output: typeof DeleteTracksResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.UploadTrackFile
    */
   uploadTrackFile: {
-    methodKind: "unary";
+    methodKind: 'unary';
     input: typeof UploadTrackFileRequestSchema;
     output: typeof UploadTrackFileResponseSchema;
-  },
+  };
   /**
    * @generated from rpc app.tracks.v1.TrackService.StreamTrackAudio
    */
   streamTrackAudio: {
-    methodKind: "server_streaming";
+    methodKind: 'server_streaming';
     input: typeof StreamTrackAudioRequestSchema;
     output: typeof StreamTrackAudioResponseSchema;
-  },
-}> = /*@__PURE__*/
-  serviceDesc(file_app_tracks_v1_tracks, 0);
-
+  };
+}> = /*@__PURE__*/ serviceDesc(file_app_tracks_v1_tracks, 0);
