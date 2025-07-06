@@ -2,10 +2,11 @@
 
 ## Notes:
 - Header search bar and icons just for aesthetics
-- Play button is for aesthetics, since the server doesn't stream the audio file
-- The uploaded file can be played using the native `audio` player (not aesthetically nice, but simple in implementation)
+- Audio streaming fixed
+- The uploaded file can be played via action menu `Play` option
 - Bulk delete implemented
 - Data fetching is separated from the components
-- UI lib used: `tanstack/router`, `tanstack/react-query`, `shadcn`, `lucia`
+- Transport agnostic (rpc / rest). Can be configured in the `config`
+- Tested with `vitest` and `playwright`
+- UI lib used: `tanstack/router`, `tanstack/react-query`, `shadcn`, `lucia`, `zustand`
 
-### P.S: Overall I am not very happy, as I could have done it better if I had more free time. I spent 6 hours on it
