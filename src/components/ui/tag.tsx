@@ -1,6 +1,6 @@
-import * as React from "react";
-import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import { X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Text content of the tag */
@@ -14,7 +14,7 @@ interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Makes the tag appear in a disabled/readonly state (if true, remove button won't be shown) */
   disabled?: boolean;
   /** Optional variant for styling the tag differently */
-  variant?: "default" | "primary" | "destructive";
+  variant?: 'default' | 'primary' | 'destructive';
 }
 
 /**
@@ -25,24 +25,24 @@ export function Tag({
   className,
   onRemove,
   removeButtonClassName,
-  removeAriaLabel = "Remove",
+  removeAriaLabel = 'Remove',
   disabled = false,
-  variant = "default",
+  variant = 'default',
   ...props
 }: TagProps) {
   // Base and variant-specific styles
   const variantStyles = {
-    default: "bg-secondary text-secondary-foreground",
-    primary: "bg-primary text-primary-foreground",
-    destructive: "bg-destructive text-destructive-foreground"
+    default: 'bg-secondary text-secondary-foreground',
+    primary: 'bg-primary text-primary-foreground',
+    destructive: 'bg-destructive text-destructive-foreground',
   };
 
   return (
     <span
       className={cn(
-        "px-2.5 py-0.5 rounded-full text-xs font-medium inline-flex items-center gap-1",
+        'px-2.5 py-0.5 rounded-full text-xs font-medium inline-flex items-center gap-1',
         variantStyles[variant],
-        disabled && "opacity-70",
+        disabled && 'opacity-70',
         className
       )}
       {...props}
@@ -55,10 +55,7 @@ export function Tag({
             e.stopPropagation();
             onRemove();
           }}
-          className={cn(
-            "hover:opacity-100 focus:outline-none opacity-70 transition-opacity",
-            removeButtonClassName
-          )}
+          className={cn('hover:opacity-100 focus:outline-none opacity-70 transition-opacity', removeButtonClassName)}
           aria-label={`${removeAriaLabel} ${typeof children === 'string' ? children : ''}`}
         >
           <X className="h-3 w-3" />
@@ -66,4 +63,4 @@ export function Tag({
       )}
     </span>
   );
-} 
+}

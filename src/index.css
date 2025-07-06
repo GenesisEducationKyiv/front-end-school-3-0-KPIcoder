@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,15 +120,15 @@
 }
 
 [data-radix-popper-content-wrapper],
-[role="dialog"] {
+[role='dialog'] {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
   margin: 0 !important;
-  max-height: 85vh !important;  
+  max-height: 85vh !important;
 }
 
-[role="dialog"] {
+[role='dialog'] {
   overflow-y: auto !important;
 }

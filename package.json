@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "format": "prettier ./src --check",
+    "format:fix": "prettier ./src --fix",
     "preview": "vite preview",
     "test": "vitest",
     "test:ct": "playwright test -c playwright-ct.config.ts"

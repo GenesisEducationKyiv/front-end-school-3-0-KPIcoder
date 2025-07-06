@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
-import { useUploadTrackFileMutation } from "@/hooks/useTracksApi";
-import { Button } from "./ui/button";
-import { FileUpload } from "./ui/file-upload";
-import AudioTrack from "./AudioTrack";
-import { AlertCircle } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
+import { useUploadTrackFileMutation } from '@/hooks/useTracksApi';
+import { Button } from './ui/button';
+import { FileUpload } from './ui/file-upload';
+import AudioTrack from './AudioTrack';
+import { AlertCircle } from 'lucide-react';
 
 interface UploadAudioModalProps {
   open: boolean;
@@ -17,7 +17,7 @@ const ACCEPTED_AUDIO_TYPES = ['audio/mpeg', 'audio/wav', 'audio/mp3', 'audio/x-w
 export default function UploadAudioModal({ open, setOpen, trackId }: UploadAudioModalProps) {
   const [file, setFile] = useState<File | null>(null);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  
+
   const uploadTrackFileMutation = useUploadTrackFileMutation();
 
   useEffect(() => {
@@ -67,40 +67,23 @@ export default function UploadAudioModal({ open, setOpen, trackId }: UploadAudio
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
-        <DialogTitle className="text-xl font-semibold mb-4">Upload Audio File</DialogTitle>        
+        <DialogTitle className="text-xl font-semibold mb-4">Upload Audio File</DialogTitle>
 
-        <FileUpload
-          value={file}
-          onChange={setFile}
-          accept={ACCEPTED_AUDIO_TYPES}
-          maxSize={10}
-        >
+        <FileUpload value={file} onChange={setFile} accept={ACCEPTED_AUDIO_TYPES} maxSize={10}>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-sm text-muted-foreground font-medium">
-              Drag & drop audio file here or click to browse
-            </p>
-            <p className="text-xs text-muted-foreground/70">
-              Supports MP3, WAV, FLAC and other audio formats
-            </p>
+            <p className="text-sm text-muted-foreground font-medium">Drag & drop audio file here or click to browse</p>
+            <p className="text-xs text-muted-foreground/70">Supports MP3, WAV, FLAC and other audio formats</p>
           </div>
         </FileUpload>
 
-        {file && audioUrl && (
-          <AudioTrack file={file} audioSrc={audioUrl} data-testid={`audio-player-${trackId}`} />
-        )}
-        
+        {file && audioUrl && <AudioTrack file={file} audioSrc={audioUrl} data-testid={`audio-player-${trackId}`} />}
+
         <div className="flex justify-end gap-2 mt-4">
-          <Button 
-            variant="outline" 
-            onClick={() => handleOpenChange(false)}
-          >
+          <Button variant="outline" onClick={() => handleOpenChange(false)}>
             Cancel
           </Button>
-          
-          <Button 
-            disabled={!file || uploadTrackFileMutation.isPending}
-            onClick={handleUpload}
-          >
+
+          <Button disabled={!file || uploadTrackFileMutation.isPending} onClick={handleUpload}>
             {uploadTrackFileMutation.isPending ? 'Uploading...' : 'Upload'}
           </Button>
 
@@ -109,7 +92,7 @@ export default function UploadAudioModal({ open, setOpen, trackId }: UploadAudio
               <AlertCircle className="h-4 w-4 text-red-500" />
               <p className="text-red-500">{uploadTrackFileMutation.error.message}</p>
             </div>
-           )}
+          )}
         </div>
       </DialogContent>
     </Dialog>

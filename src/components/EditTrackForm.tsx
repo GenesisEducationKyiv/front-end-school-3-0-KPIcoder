@@ -1,13 +1,8 @@
-import { useUpdateTrackMutation } from "@/hooks/useTracksApi";
-import { TrackDto } from "@/interfaces/dto/TrackDto";
-import { Track } from "@/interfaces/Track";
-import TrackForm from "@/components/TrackForm";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useUpdateTrackMutation } from '@/hooks/useTracksApi';
+import { TrackDto } from '@/interfaces/dto/TrackDto';
+import { Track } from '@/interfaces/Track';
+import TrackForm from '@/components/TrackForm';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 
 interface EditTrackFormProps {
   isOpen: boolean;
@@ -17,28 +12,29 @@ interface EditTrackFormProps {
 
 const EditTrackForm = ({ isOpen, onClose, track }: EditTrackFormProps) => {
   const updateTrackMutation = useUpdateTrackMutation();
-  
+
   const handleUpdateTrack = (trackData: TrackDto) => {
     if (!track) return;
-    
+
     updateTrackMutation.mutate(
       { id: track.id, trackData },
       {
         onSuccess: () => {
           onClose();
-        }
+        },
       }
     );
   };
 
-
-  const trackFormData: Partial<TrackDto> = track ? {
-    title: track.title,
-    artist: track.artist,
-    album: track.album,
-    genres: track.genres,
-    coverImage: track.coverImage
-  } : {};
+  const trackFormData: Partial<TrackDto> = track
+    ? {
+        title: track.title,
+        artist: track.artist,
+        album: track.album,
+        genres: track.genres,
+        coverImage: track.coverImage,
+      }
+    : {};
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -51,16 +47,16 @@ const EditTrackForm = ({ isOpen, onClose, track }: EditTrackFormProps) => {
         }}
       >
         <DialogTitle className="text-lg font-semibold mb-4">Edit Track</DialogTitle>
-        
+
         <DialogDescription className="text-sm text-muted-foreground mb-4">
           Update the details for this track
         </DialogDescription>
-        
+
         <div className="mt-2">
           {track && (
             <TrackForm
               defaultValues={trackFormData}
-              btnText={updateTrackMutation.isPending ? "Saving..." : "Save Changes"}
+              btnText={updateTrackMutation.isPending ? 'Saving...' : 'Save Changes'}
               onSubmit={handleUpdateTrack}
             />
           )}

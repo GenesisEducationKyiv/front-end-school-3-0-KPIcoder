@@ -1,41 +1,21 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useSearch } from "@tanstack/react-router";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { 
-  Select,
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue
-} from "./ui/select";
-import { useGenresQuery } from "@/hooks/useGenresApi";
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "./ui/accordion";
-import {
-  Slider
-} from "./ui/slider";
-import { SlidersHorizontal, X } from "lucide-react";
-import { useDebounce } from "@/hooks/useDebounce";
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearch } from '@tanstack/react-router';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { useGenresQuery } from '@/hooks/useGenresApi';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
+import { Slider } from './ui/slider';
+import { SlidersHorizontal, X } from 'lucide-react';
+import { useDebounce } from '@/hooks/useDebounce';
 
-const ALL_GENRES = "all";
+const ALL_GENRES = 'all';
 
 export default function TrackFilters() {
   const navigate = useNavigate();
-  
-  const { 
-    search = "", 
-    genre = "", 
-    artist = "", 
-    sort, 
-    order,
-    limit
-  } = useSearch({ from: "/tracks", strict: true });
+
+  const { search = '', genre = '', artist = '', sort, order, limit } = useSearch({ from: '/tracks', strict: true });
 
   const [searchInput, setSearchInput] = useState(search);
   const [selectedGenre, setSelectedGenre] = useState(genre || ALL_GENRES);
@@ -48,9 +28,7 @@ export default function TrackFilters() {
   const debouncedSearch = useDebounce(searchInput, 500);
   const debouncedArtist = useDebounce(artistInput, 500);
 
-
   const { data: genres = [] } = useGenresQuery();
-
 
   const handleGenreChange = (value: string) => {
     setSelectedGenre(value);
@@ -66,35 +44,27 @@ export default function TrackFilters() {
         sort: selectedSort,
         order: selectedOrder,
         page: 1,
-        limit: entriesPerPage
+        limit: entriesPerPage,
       },
-      replace: true
+      replace: true,
     });
-  }, [
-    debouncedSearch, 
-    selectedGenre, 
-    debouncedArtist, 
-    selectedSort, 
-    selectedOrder, 
-    entriesPerPage, 
-    navigate, 
-  ]);
+  }, [debouncedSearch, selectedGenre, debouncedArtist, selectedSort, selectedOrder, entriesPerPage, navigate]);
 
   const handleResetFilters = () => {
-    setSearchInput("");
+    setSearchInput('');
     setSelectedGenre(ALL_GENRES);
-    setArtistInput("");
-    setSelectedSort("title");
-    setSelectedOrder("asc");
+    setArtistInput('');
+    setSelectedSort('title');
+    setSelectedOrder('asc');
     setEntriesPerPage(10);
-    
+
     void navigate({
       to: '/tracks',
       search: {
         page: 1,
-        limit: 10
+        limit: 10,
       },
-      replace: true
+      replace: true,
     });
   };
 
@@ -103,10 +73,10 @@ export default function TrackFilters() {
   };
 
   const activeFilterCount = [
-    debouncedSearch, 
-    selectedGenre !== ALL_GENRES, 
+    debouncedSearch,
+    selectedGenre !== ALL_GENRES,
     debouncedArtist,
-    selectedSort !== "title" || selectedOrder !== "asc" || entriesPerPage !== 10
+    selectedSort !== 'title' || selectedOrder !== 'asc' || entriesPerPage !== 10,
   ].filter(Boolean).length;
 
   return (
@@ -125,7 +95,7 @@ export default function TrackFilters() {
             variant="ghost"
             size="icon"
             className="absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6"
-            onClick={() => setSearchInput("")}
+            onClick={() => setSearchInput('')}
           >
             <X className="h-4 w-4" />
           </Button>
@@ -133,12 +103,7 @@ export default function TrackFilters() {
       </div>
 
       <div className="flex items-center justify-between">
-        <Button 
-          variant="outline" 
-          size="sm" 
-          onClick={toggleFilters}
-          className="flex items-center gap-2"
-        >
+        <Button variant="outline" size="sm" onClick={toggleFilters} className="flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4" />
           <span>Filters</span>
           {activeFilterCount > 0 && (
@@ -149,9 +114,9 @@ export default function TrackFilters() {
         </Button>
 
         {activeFilterCount > 0 && (
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={handleResetFilters}
             className="text-muted-foreground hover:text-foreground"
           >
@@ -169,10 +134,7 @@ export default function TrackFilters() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1">
                     <Label htmlFor="genre">Genre</Label>
-                    <Select 
-                      value={selectedGenre} 
-                      onValueChange={handleGenreChange}
-                    >
+                    <Select value={selectedGenre} onValueChange={handleGenreChange}>
                       <SelectTrigger id="genre" data-testid="filter-genre">
                         <SelectValue placeholder="All genres" />
                       </SelectTrigger>
@@ -207,10 +169,7 @@ export default function TrackFilters() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1">
                     <Label htmlFor="sort">Sort By</Label>
-                    <Select 
-                      value={selectedSort} 
-                      onValueChange={(v: 'asc' | 'desc') => setSelectedOrder(v)}
-                    >
+                    <Select value={selectedSort} onValueChange={(v: 'asc' | 'desc') => setSelectedOrder(v)}>
                       <SelectTrigger id="sort" data-testid="sort-select">
                         <SelectValue />
                       </SelectTrigger>
@@ -225,10 +184,7 @@ export default function TrackFilters() {
 
                   <div className="space-y-1">
                     <Label htmlFor="order">Order</Label>
-                    <Select 
-                      value={selectedOrder} 
-                      onValueChange={(v: 'asc' | 'desc') => setSelectedOrder(v)}
-                    >
+                    <Select value={selectedOrder} onValueChange={(v: 'asc' | 'desc') => setSelectedOrder(v)}>
                       <SelectTrigger id="order">
                         <SelectValue />
                       </SelectTrigger>

@@ -1,6 +1,6 @@
-import { useState, useRef, DragEvent, ChangeEvent, ReactNode } from "react";
-import { cn } from "@/lib/utils";
-import { Upload, File as FileIcon } from "lucide-react";
+import { useState, useRef, DragEvent, ChangeEvent, ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import { Upload, File as FileIcon } from 'lucide-react';
 
 interface FileUploadProps {
   value: File | null;
@@ -20,14 +20,14 @@ interface FileUploadProps {
 export function FileUpload({
   value,
   onChange,
-  accept = ["*/*"],
+  accept = ['*/*'],
   multiple = false,
   maxSize,
   className,
   icon = <Upload className="h-10 w-10 text-muted-foreground/70" />,
-  dragActiveClassName = "border-primary bg-primary/5",
-  dragInactiveClassName = "border-muted-foreground/20 hover:bg-muted/50",
-  hasFileClassName = "bg-muted/20",
+  dragActiveClassName = 'border-primary bg-primary/5',
+  dragInactiveClassName = 'border-muted-foreground/20 hover:bg-muted/50',
+  hasFileClassName = 'bg-muted/20',
   children,
   renderFile,
 }: FileUploadProps) {
@@ -41,7 +41,7 @@ export function FileUpload({
     // Handle single file upload
     if (!multiple) {
       const file = files[0];
-      
+
       // Check file size if maxSize is specified
       if (maxSize && file.size > maxSize * 1024 * 1024) {
         alert(`File size exceeds the maximum limit of ${maxSize}MB.`);
@@ -54,7 +54,7 @@ export function FileUpload({
 
     // Handle multiple files (if needed in the future)
     // Currently not fully implemented since it returns a single file
-    const validFiles = Array.from(files).filter(file => {
+    const validFiles = Array.from(files).filter((file) => {
       if (maxSize && file.size > maxSize * 1024 * 1024) {
         return false;
       }
@@ -102,11 +102,11 @@ export function FileUpload({
   };
 
   return (
-    <div 
+    <div
       className={cn(
-        "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors",
+        'border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors',
         isDragging ? dragActiveClassName : dragInactiveClassName,
-        value ? hasFileClassName : "",
+        value ? hasFileClassName : '',
         className
       )}
       onClick={handleUploadAreaClick}
@@ -115,34 +115,30 @@ export function FileUpload({
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <input 
-        type="file" 
+      <input
+        type="file"
         ref={fileInputRef}
-        className="hidden" 
-        accept={accept.join(",")} 
+        className="hidden"
+        accept={accept.join(',')}
         multiple={multiple}
-        onChange={handleFileChange} 
+        onChange={handleFileChange}
       />
-      
+
       {!value ? (
         children || (
           <div className="flex flex-col items-center gap-2">
             {icon}
-            <p className="text-sm text-muted-foreground font-medium">
-              Drag & drop file here or click to browse
-            </p>
+            <p className="text-sm text-muted-foreground font-medium">Drag & drop file here or click to browse</p>
           </div>
         )
+      ) : renderFile ? (
+        renderFile(value)
       ) : (
-        renderFile ? (
-          renderFile(value)
-        ) : (
-          <div className="flex items-center justify-center">
-            <FileIcon className="h-6 w-6 text-primary mr-2" />
-            <span className="text-sm font-medium">{value.name}</span>
-          </div>
-        )
+        <div className="flex items-center justify-center">
+          <FileIcon className="h-6 w-6 text-primary mr-2" />
+          <span className="text-sm font-medium">{value.name}</span>
+        </div>
       )}
     </div>
   );
-} 
+}

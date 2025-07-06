@@ -1,4 +1,4 @@
-import { Spinner, SpinnerProps } from "./spinner";
+import { Spinner, SpinnerProps } from './spinner';
 
 interface ButtonSpinnerProps extends SpinnerProps {
   /**
@@ -14,15 +14,15 @@ interface ButtonSpinnerProps extends SpinnerProps {
 /**
  * A specialized spinner component designed for use inside buttons
  */
-export function ButtonSpinner({ 
-  loading = true, 
+export function ButtonSpinner({
+  loading = true,
   loadingText,
-  size = "xs",
-  variant = "white",
-  ...props 
+  size = 'xs',
+  variant = 'white',
+  ...props
 }: ButtonSpinnerProps) {
   if (!loading) return null;
-  
+
   return (
     <>
       <Spinner size={size} variant={variant} {...props} />
@@ -33,18 +33,18 @@ export function ButtonSpinner({
 
 /**
  * Example usage:
- * 
+ *
  * <Button disabled={isLoading}>
  *   <ButtonSpinner loading={isLoading} />
  *   {isLoading ? 'Processing...' : 'Submit'}
  * </Button>
- * 
+ *
  * or with loading text combined:
- * 
+ *
  * <Button disabled={isLoading}>
- *   {isLoading 
- *     ? <ButtonSpinner loading={isLoading} loadingText="Processing..." /> 
+ *   {isLoading
+ *     ? <ButtonSpinner loading={isLoading} loadingText="Processing..." />
  *     : 'Submit'
  *   }
  * </Button>
- */ 
+ */
