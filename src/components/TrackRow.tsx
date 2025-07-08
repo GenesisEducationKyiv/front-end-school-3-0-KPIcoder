@@ -81,6 +81,8 @@ const TrackRow = ({ track, handleClickEdit, handleClickSelect }: TrackRowProps) 
             src={track.coverImage || DEFAULT_IMAGE_COVER}
             alt={`${track.title} cover`}
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
