@@ -1,6 +1,6 @@
-import { Outlet } from '@tanstack/react-router'
-import Header from './widgets/Header'
-import Footer from './widgets/Footer'
+import { Outlet } from '@tanstack/react-router';
+import Header from './widgets/Header';
+import Footer from './widgets/Footer';
 
 function Root() {
   return (
@@ -9,12 +9,9 @@ function Root() {
       <main className="flex-1 container mx-auto py-6 px-4">
         <Outlet />
       </main>
-      <Footer 
-        showSocials={true} 
-        showLegalLinks={true} 
-      />
+      <Footer showSocials={true} showLegalLinks={true} />
     </div>
-  )
+  );
 }
 
-export default Root 
+export default Root;

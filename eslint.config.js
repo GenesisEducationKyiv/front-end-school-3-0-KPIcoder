@@ -3,13 +3,15 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 export default tseslint.config(
-    {ignores: ['dist', 'playwright', './playwright-ct.config.ts', './playwright.config.ts']},
+    {ignores: ['dist', 'playwright', './playwright-ct.config.ts', './playwright.config.ts', './vite.config.ts']},
     {
         extends: [
             js.configs.recommended,
-            tseslint.configs.recommendedTypeChecked
+            tseslint.configs.recommendedTypeChecked,
+            eslintPluginPrettierRecommended,
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {

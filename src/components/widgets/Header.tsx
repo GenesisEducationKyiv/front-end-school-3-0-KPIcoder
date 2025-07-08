@@ -1,8 +1,8 @@
-import { Link } from "@tanstack/react-router";
-import { Search, Menu, User, Heart, PlayCircle, Headphones, Settings, LogOut } from "lucide-react";
-import { Button } from "../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Input } from "../ui/input";
+import { Link } from '@tanstack/react-router';
+import { Search, Menu, User, Heart, PlayCircle, Headphones, Settings, LogOut } from 'lucide-react';
+import { Button } from '../ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Input } from '../ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +10,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { useState } from "react";
+} from '../ui/dropdown-menu';
+import { useState } from 'react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -38,11 +38,7 @@ export default function Header() {
         <div className="flex-1 hidden md:block max-w-md mx-4">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search songs, artists, albums..."
-              className="w-full pl-8 bg-background"
-            />
+            <Input type="search" placeholder="Search songs, artists, albums..." className="w-full pl-8 bg-background" />
           </div>
         </div>
 
@@ -52,7 +48,7 @@ export default function Header() {
           <Button variant="ghost" size="icon" className="hidden md:flex text-muted-foreground hover:text-primary">
             <PlayCircle className="h-5 w-5" />
           </Button>
-          
+
           {/* Favorites (desktop only) */}
           <Button variant="ghost" size="icon" className="hidden md:flex text-muted-foreground hover:text-primary">
             <Heart className="h-5 w-5" />
@@ -92,9 +88,9 @@ export default function Header() {
           </DropdownMenu>
 
           {/* Mobile menu toggle */}
-          <Button 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            variant="ghost"
+            size="icon"
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -116,7 +112,7 @@ export default function Header() {
                 className="w-full pl-8 bg-background"
               />
             </div>
-            
+
             {/* Mobile navigation */}
             <nav className="flex flex-col space-y-1">
               <Button asChild variant="ghost" className="justify-start" onClick={() => setIsMobileMenuOpen(false)}>
