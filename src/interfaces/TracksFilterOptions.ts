@@ -7,7 +7,7 @@ export const searchParamsSchema = z.object({
   sort: z.enum(['title', 'artist', 'album', 'createdAt']).default('title'),
   order: z.enum(['asc', 'desc']).default('asc'),
   page: z.number().default(1),
-  limit: z.number().default(10),
+  limit: z.number().default(5),
 });
 
 export type TracksFilterOptions = z.infer<typeof searchParamsSchema>;
