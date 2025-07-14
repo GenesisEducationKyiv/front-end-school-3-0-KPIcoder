@@ -8,102 +8,88 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as WebtransportTestRouteImport } from './routes/webtransport-test'
+import { Route as TracksRouteImport } from './routes/tracks'
+import { Route as IndexRouteImport } from './routes/index'
 
-import { Route as rootRoute } from './routes/__root';
-import { Route as TracksImport } from './routes/tracks';
-import { Route as IndexImport } from './routes/index';
-
-// Create/Update Routes
-
-const TracksRoute = TracksImport.update({
+const WebtransportTestRoute = WebtransportTestRouteImport.update({
+  id: '/webtransport-test',
+  path: '/webtransport-test',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TracksRoute = TracksRouteImport.update({
   id: '/tracks',
   path: '/tracks',
-  getParentRoute: () => rootRoute,
-} as any);
-
-const IndexRoute = IndexImport.update({
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/tracks': typeof TracksRoute
+  '/webtransport-test': typeof WebtransportTestRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/tracks': typeof TracksRoute
+  '/webtransport-test': typeof WebtransportTestRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/tracks': typeof TracksRoute
+  '/webtransport-test': typeof WebtransportTestRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/tracks' | '/webtransport-test'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/tracks' | '/webtransport-test'
+  id: '__root__' | '/' | '/tracks' | '/webtransport-test'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  TracksRoute: typeof TracksRoute
+  WebtransportTestRoute: typeof WebtransportTestRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
+    '/webtransport-test': {
+      id: '/webtransport-test'
+      path: '/webtransport-test'
+      fullPath: '/webtransport-test'
+      preLoaderRoute: typeof WebtransportTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tracks': {
-      id: '/tracks';
-      path: '/tracks';
-      fullPath: '/tracks';
-      preLoaderRoute: typeof TracksImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/tracks'
+      path: '/tracks'
+      fullPath: '/tracks'
+      preLoaderRoute: typeof TracksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
-}
-
-// Create and export the route tree
-
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/tracks': typeof TracksRoute;
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/tracks': typeof TracksRoute;
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  '/': typeof IndexRoute;
-  '/tracks': typeof TracksRoute;
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/tracks';
-  fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/tracks';
-  id: '__root__' | '/' | '/tracks';
-  fileRoutesById: FileRoutesById;
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  TracksRoute: typeof TracksRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TracksRoute: TracksRoute,
-};
-
-export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/tracks"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/tracks": {
-      "filePath": "tracks.tsx"
-    }
-  }
+  WebtransportTestRoute: WebtransportTestRoute,
 }
-ROUTE_MANIFEST_END */
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
