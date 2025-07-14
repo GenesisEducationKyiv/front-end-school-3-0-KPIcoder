@@ -15,3 +15,5 @@ e2e
 /src/services/TracksFake.ts
 /src/services/Tracks.spec.ts
 /src/services/GenresHttp.spec.ts
+.storybook
+src/stories
