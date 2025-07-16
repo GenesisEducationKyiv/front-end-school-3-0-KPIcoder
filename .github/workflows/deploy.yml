@@ -26,6 +26,10 @@ jobs:
             type=ref,event=pr,prefix=pr-
             type=sha,prefix=sha-
 
+      - name: Set SHA output
+        id: set_sha
+        run: echo "::set-output name=sha::${GITHUB_SHA}"
+
       - name: Build Docker image
         uses: docker/build-push-action@v5
         with:
