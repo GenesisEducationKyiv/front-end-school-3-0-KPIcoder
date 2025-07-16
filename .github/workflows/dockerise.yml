@@ -43,7 +43,7 @@ jobs:
       - name: Upload Docker image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: docker-image-${{ github.sha }}
+          name: docker-image-latest
           path: /tmp/tracks-client.tar
           retention-days: 7
 
