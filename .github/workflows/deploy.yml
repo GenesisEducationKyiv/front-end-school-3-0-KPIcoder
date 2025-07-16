@@ -2,7 +2,7 @@ name: Deploy Vite App to Droplet
 
 on:
   workflow_run:
-    workflows: [ "Build Docker Image" ]
+    workflows: ["Build Docker Image"]
     types:
       - completed
 
@@ -23,8 +23,8 @@ jobs:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH }}
-          source: /tmp/image.tar
-          target: /root/tracks-client/image.tar
+          source: /tmp/tracks-client.tar
+          target: /root/tracks-client/tracks-client.tar
 
       - name: Run Docker container on Droplet
         uses: appleboy/ssh-action@v1.0.3
