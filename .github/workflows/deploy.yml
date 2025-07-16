@@ -1,0 +1,42 @@
+name: Deploy Vite App to Droplet
+
+on:
+  workflow_run:
+    workflows: [ "Build Docker Image" ]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image-${{ github.sha }}
+          path: /tmp
+
+      - name: Upload image to Droplet
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH }}
+          source: /tmp/image.tar
+          target: /root/tracks-client/image.tar
+
+      - name: Run Docker container on Droplet
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH }}
+          script: |
+            cd /root/tracks-client
+
+            docker stop tracks-client || true
+            docker rm tracks-client || true
+
+            docker load -i tracks-client.tar
+            docker run -d --name tracks-client -p 4173:4173 tracks-client:latest
