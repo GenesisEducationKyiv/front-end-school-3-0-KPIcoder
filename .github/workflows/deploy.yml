@@ -1,20 +1,58 @@
-name: Deploy Vite App to Droplet
+name: Build and Deploy Docker Image
 
 on:
-  workflow_run:
-    workflows: ["Build Docker Image"]
-    types:
-      - completed
+  push:
+    branches: [main]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      image_sha: ${{ steps.set_sha.outputs.sha }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: kpicoder-tracks-fe
+          tags: |
+            type=ref,event=pr,prefix=pr-
+            type=sha,prefix=sha-
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: kpicoder-tracks-fe:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          outputs: type=docker,dest=/tmp/tracks-client-${{ github.sha }}.tar
+          secrets: |
+            VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-${{ github.sha }}
+          path: /tmp/tracks-client-${{ github.sha }}.tar
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
       - name: Download Docker image artifact
         uses: actions/download-artifact@v4
         with:
-          name: docker-image-latest
+          name: docker-image-${{ needs.build.outputs.image_sha }}
           path: /tmp
 
       - name: Upload image to Droplet
@@ -23,7 +61,7 @@ jobs:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH }}
-          source: /tmp/tracks-client.tar
+          source: /tmp/tracks-client-${{ needs.build.outputs.image_sha }}.tar
           target: /root/tracks-client/tracks-client.tar
 
       - name: Run Docker container on Droplet
@@ -34,9 +72,7 @@ jobs:
           key: ${{ secrets.DROPLET_SSH }}
           script: |
             cd /root/tracks-client
-
             docker stop tracks-client || true
             docker rm tracks-client || true
-
             docker load -i tracks-client.tar
-            docker run -d --name tracks-client -p 4173:4173 tracks-client:latest
+            docker run -d --name tracks-client -p 4173:4173 kpicoder-tracks-fe:${{ needs.build.outputs.image_sha }}
