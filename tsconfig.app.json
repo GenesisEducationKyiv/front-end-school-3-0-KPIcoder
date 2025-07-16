@@ -33,6 +33,8 @@
   },
   "include": [
     "src",
-    "e2e/ct"
+    "e2e/ct",
+    ".storybook/*",
+    "vitest.shims.d.ts"
   ]
 }
