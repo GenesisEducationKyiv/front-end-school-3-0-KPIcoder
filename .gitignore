@@ -1,0 +1,17 @@
+/.idea
+/.tanstack
+node_modules/
+# Playwright
+/tests-examples
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# env
+
+.env*
+!.env.example
+
+*storybook.log
+storybook-static
