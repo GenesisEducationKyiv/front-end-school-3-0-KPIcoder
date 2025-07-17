@@ -1,5 +1,9 @@
 # Music Player App
 
+### For the person who is going to review it:
+Please reach out to me (tg @kpicoder) and I can guide you through the project.
+I would like to explain the bugs, features, approaches and WIP functionality.
+
 ## Notes:
 - Header search bar and icons just for aesthetics
 - Audio streaming fixed
