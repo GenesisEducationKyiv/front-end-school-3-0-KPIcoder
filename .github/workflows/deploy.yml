@@ -79,7 +79,7 @@ jobs:
             docker run -d \
               --restart always \
               --name $IMAGE_NAME \
-              -p 4173:4173 \
+              -p 4173:80 \
               $REGISTRY/$IMAGE_NAME:${TAG:0:7}
   
   
