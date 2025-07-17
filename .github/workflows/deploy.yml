@@ -51,19 +51,34 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    env:
+      REGISTRY: ${{ secrets.REGISTRY_URL }}
+      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+
     steps:
-      - name: Upload image to Droplet
-        uses: appleboy/scp-action@v0.1.4
+      - name: Deploy Docker image on Droplet
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH }}
-          envs: IMAGE_NAME,REGISTRY,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
           script: |
-            docker login -u ${{ secrets.REGISTRY_EMAIL }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
-            docker stop $(echo $IMAGE_NAME)
-            docker rm $(echo $IMAGE_NAME)
+            TAG=${{ github.sha }}
+
+            echo "Logging in to DigitalOcean container registry..."
+            docker login -u ${{ secrets.REGISTRY_EMAIL }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} $REGISTRY
+
+            echo "Pulling image: $REGISTRY/$IMAGE_NAME:${TAG:0:7}"
+            docker pull $REGISTRY/$IMAGE_NAME:${TAG:0:7}
+
+            echo "Stopping and removing existing container (if any)..."
+            docker stop $IMAGE_NAME || true
+            docker rm $IMAGE_NAME || true
+
+            echo "Starting new container..."
             docker run -d \
-            --restart always \
-            --name $(echo $IMAGE_NAME) \
-            $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+              --restart always \
+              --name $IMAGE_NAME \
+              -p 4173:4173 \
+              $REGISTRY/$IMAGE_NAME:${TAG:0:7}
+  
