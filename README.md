@@ -10,3 +10,4 @@
 - Tested with `vitest` and `playwright`
 - UI lib used: `tanstack/router`, `tanstack/react-query`, `shadcn`, `lucia`, `zustand`
 
+Deployed app: http://167.99.5.213:4173/
