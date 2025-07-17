@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Docker image and save to tar
         run: |
-          docker build -t $REGISTRY/$IMAGE_NAME:${GITHUB_SHA::7} .
+          docker build --build-arg VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }} -t $REGISTRY/$IMAGE_NAME:${GITHUB_SHA::7} .
           docker save $REGISTRY/$IMAGE_NAME:${GITHUB_SHA::7} -o /tmp/${IMAGE_NAME}_${GITHUB_SHA::7}.tar
 
       - name: Install doctl
@@ -51,10 +51,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    env:
-      REGISTRY: ${{ secrets.REGISTRY_URL }}
-      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-
     steps:
       - name: Deploy Docker image on Droplet
         uses: appleboy/ssh-action@v1.0.3
@@ -64,9 +60,13 @@ jobs:
           key: ${{ secrets.DROPLET_SSH }}
           script: |
             TAG=${{ github.sha }}
+            REGISTRY=${{ secrets.REGISTRY_URL }}
+            IMAGE_NAME=${{ secrets.IMAGE_NAME }}
+            REGISTRY_EMAIL=${{ secrets.REGISTRY_EMAIL }}
+            DO_TOKEN=${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
             echo "Logging in to DigitalOcean container registry..."
-            docker login -u ${{ secrets.REGISTRY_EMAIL }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} $REGISTRY
+            echo "$DO_TOKEN" | docker login -u "$REGISTRY_EMAIL" --password-stdin $REGISTRY
 
             echo "Pulling image: $REGISTRY/$IMAGE_NAME:${TAG:0:7}"
             docker pull $REGISTRY/$IMAGE_NAME:${TAG:0:7}
@@ -81,4 +81,5 @@ jobs:
               --name $IMAGE_NAME \
               -p 4173:4173 \
               $REGISTRY/$IMAGE_NAME:${TAG:0:7}
+  
   
