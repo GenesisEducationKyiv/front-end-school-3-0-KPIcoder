@@ -41,7 +41,7 @@ jobs:
         run: docker push $REGISTRY/$IMAGE_NAME:${GITHUB_SHA::7}
 
       - name: Upload Docker image tarball as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image-${{ github.sha }}
           path: /tmp/${IMAGE_NAME}_${GITHUB_SHA::7}.tar
